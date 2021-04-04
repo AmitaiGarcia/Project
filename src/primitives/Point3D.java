@@ -2,41 +2,67 @@ package primitives;
 
 import static primitives.Util.*;
 
+import java.util.Collection;
+import java.util.Objects;
+import java.util.Vector;
+
 public class Point3D {
-    public final coordinate x;
-    public final coordinate y;
-    public final coordinate z;
+    public final Coordinate x;
+    public final Coordinate y;
+    public final Coordinate z;
     static final Point3D ZERO = new Point3D(0, 0, 0);
 
-    public Point3D(coordinate x, coordinate y, coordinate z) {
+    public Point3D(Coordinate x, Coordinate y, Coordinate z) {
         this.x = x;
         this.y = y;
         this.z = z;
     }
 
     public Point3D(double x, double y, double z) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
+        this.x = new Coordinate(x);
+        this.y = new Coordinate(y);
+        this.z = new Coordinate(z);
     }
 
-    public subtract(Point3D gp){ // gp = given point
-    return new vector(new point3D(x.coordinate - gp.x.coordinate, y.coordinate - gp.y.coordinate, z.coordinate - gp.z.coordinate));
+    public Vector subtract(Point3D gp) { // gp = given point
+        return new Vector(new Point3D(x.coord - gp.x.coord, y.coord - gp.y.coord, z.coord - gp.z.coord));
 
     }
 
-    public add(Point3D gv){// gv = given vector
-        return (new point3D(this.x + gv.x, this.y + gv.y, this.z + gv.z));
+    public Point3D add(Vector gv) {// gv = given vector
+        return (point3D(this.x + gv.x, this.y + gv.y, this.z + gv.z));
     }
 
-    public distanceSquared(Point3D gp){ // gp = given point
-        double dx = this.x - gp.x;
-        double dy = this.y - gp.y;
-        double dz = this.z - gp.z;
+    public double distanceSquared(Point3D gp) { // gp = given point
+        double dx = x.coord - gp.x.coord;
+        double dy = y.coord - gp.y.coord;
+        double dz = z.coord - gp.z.coord;
         return dx * dx + dy * dy + dz * dz;
     }
 
-    public distance(Point3D gp){ // gp = given point
-    return math.sqrt(this.distanceSquared(gp));
+    public double distance(Point3D gp) { // gp = given point
+        return Math.sqrt(distanceSquared(gp));
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Point3D)) {
+            return false;
+        }
+        Point3D point3D = (Point3D) o;
+        return Objects.equals(x, point3D.x) && Objects.equals(y, point3D.y) && Objects.equals(z, point3D.z);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y, z);
+    }
+
+    @Override
+    public String toString() {
+        return "(" + x + ", " + y + ", " + z + ")";
+    }
+
 }
