@@ -21,7 +21,22 @@ public class Point3D {
     }
 
     public subtract(Point3D gp){ // gp = given point
+    return new vector(new point3D(x.coordinate - gp.x.coordinate, y.coordinate - gp.y.coordinate, z.coordinate - gp.z.coordinate));
 
+    }
 
+    public add(Point3D gv){// gv = given vector
+        return (new point3D(this.x + gv.x, this.y + gv.y, this.z + gv.z));
+    }
+
+    public distanceSquared(Point3D gp){ // gp = given point
+        double dx = this.x - gp.x;
+        double dy = this.y - gp.y;
+        double dz = this.z - gp.z;
+        return dx * dx + dy * dy + dz * dz;
+    }
+
+    public distance(Point3D gp){ // gp = given point
+    return math.sqrt(this.distanceSquared(gp));
     }
 }
