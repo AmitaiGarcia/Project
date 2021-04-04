@@ -1,10 +1,7 @@
 package primitives;
 
 import static primitives.Util.*;
-
-import java.util.Collection;
 import java.util.Objects;
-import java.util.Vector;
 
 public class Point3D {
     public final Coordinate x;
@@ -30,7 +27,8 @@ public class Point3D {
     }
 
     public Point3D add(Vector gv) {// gv = given vector
-        return (point3D(this.x + gv.x, this.y + gv.y, this.z + gv.z));
+        return new Point3D(this.x.coord + gv.head.x.coord, this.y.coord + gv.head.y.coord,
+                this.z.coord + gv.head.z.coord);
     }
 
     public double distanceSquared(Point3D gp) { // gp = given point
