@@ -25,6 +25,11 @@ public class Vector {
         }
         this.head = new Point3D(x, y, z);
     }
+    // get methods
+
+    public Point3D getHead() {
+        return this.head;
+    }
 
     // add and subtract vectors
 
@@ -72,8 +77,8 @@ public class Vector {
     }
 
     public Vector normalize() {
-        double length = length();
-        head.x = head.x / length();
+        double length = this.length();
+        head = new Point3D(head.x.coord / length, head.y.coord / length, head.z.coord / length);
         return this;
     }
 

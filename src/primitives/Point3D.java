@@ -1,13 +1,12 @@
 package primitives;
 
-import static primitives.Util.*;
 import java.util.Objects;
 
 public class Point3D {
     public final Coordinate x;
     public final Coordinate y;
     public final Coordinate z;
-    static final Point3D ZERO = new Point3D(0, 0, 0);
+    public static final Point3D ZERO = new Point3D(0, 0, 0);
 
     public Point3D(Coordinate x, Coordinate y, Coordinate z) {
         this.x = x;
