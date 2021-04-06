@@ -1,3 +1,12 @@
+/*
+ * Name: Amitai Rodrigue Garcia    ID:338013543
+ * Name: Mengistu kerew            ID:921114
+ * Emailadresses: amitaigarcia75@gmail.com
+ *                em.mengistuendeshaw@gmail.com
+ *
+ *
+ */
+
 import primitives.*;
 import static java.lang.System.out;
 import static primitives.Util.*;
