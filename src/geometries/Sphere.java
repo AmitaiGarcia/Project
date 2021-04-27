@@ -23,7 +23,7 @@ public class Sphere implements Geometry {
     @Override
     public Vector getNormal(Point3D gp) {
 
-        return null;
+        return center.subtract(gp).normalized();
     }
 
     @Override

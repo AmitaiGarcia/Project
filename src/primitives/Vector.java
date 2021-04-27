@@ -7,6 +7,9 @@ public class Vector {
 
     // constructor
     public Vector(Point3D head) {
+        if (head.equals(Point3D.ZERO)) {
+            throw new IllegalArgumentException("Cannot use zero vector");
+        }
         this.head = head;
     }
 
