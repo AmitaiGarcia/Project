@@ -62,4 +62,8 @@ public class Point3D {
         return "(" + x + ", " + y + ", " + z + ")";
     }
 
+    public double getX() {
+        return this.x.coord;
+    }
+    // get Y and get Y.
 }
