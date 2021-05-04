@@ -8,15 +8,23 @@ public class Vector {
     // constructor
     public Vector(Point3D head) {
         if (head.equals(Point3D.ZERO)) {
-            throw new IllegalArgumentException("Cannot use zero vector");
+            throw new IllegalArgumentException("Cannot use the zero vector1");
         }
         this.head = head;
+    }
+
+    public Vector(Vector v) {
+        if (v.equals(new Vector(new Coordinate(0), new Coordinate(0), new Coordinate(0)))) {
+            throw new IllegalArgumentException("you cant create a zero vector.");
+        }
+        head = new Point3D(v.head);
+
     }
 
     public Vector(Coordinate x, Coordinate y, Coordinate z) {
         Point3D point = new Point3D(x, y, z);
         if (point.equals(Point3D.ZERO)) {
-            throw new IllegalArgumentException("Cannot use zero vector");
+            throw new IllegalArgumentException("Cannot use zero vector2");
         }
         this.head = new Point3D(x, y, z);
     }
@@ -24,7 +32,7 @@ public class Vector {
     public Vector(double x, double y, double z) {
         Point3D point = new Point3D(x, y, z);
         if (point.equals(Point3D.ZERO)) {
-            throw new IllegalArgumentException("Cannot use zero vector");
+            throw new IllegalArgumentException("Cannot use zero vector3");
         }
         this.head = new Point3D(x, y, z);
     }

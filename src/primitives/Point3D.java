@@ -20,6 +20,12 @@ public class Point3D {
         this.z = new Coordinate(z);
     }
 
+    public Point3D(Point3D p) {
+        this.x = new Coordinate(p.x);
+        this.y = new Coordinate(p.y);
+        this.z = new Coordinate(p.z);
+    }
+
     public Vector subtract(Point3D gp) { // gp = given point
         return new Vector(new Point3D(x.coord - gp.x.coord, y.coord - gp.y.coord, z.coord - gp.z.coord));
 
