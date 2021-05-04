@@ -33,4 +33,16 @@ public class Ray {
         return "{" + " p0='" + p0 + "'" + ", dir='" + dir + "'" + ", norm='" + norm + "'" + "}";
     }
 
+    public Point3D getP0() {
+        return this.p0;
+    }
+
+    public Vector getDir() {
+        return this.dir;
+    }
+
+    public Vector getNorm() {
+        return this.norm;
+    }
+
 }
