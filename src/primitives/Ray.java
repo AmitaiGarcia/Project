@@ -9,7 +9,7 @@ public class Ray {
 
     public Ray(Point3D p0, Vector dir) {
         this.p0 = p0;
-        this.dir = dir;
+        this.dir = dir.normalized();
     }
 
     @Override
