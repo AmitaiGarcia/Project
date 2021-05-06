@@ -49,17 +49,23 @@ public class Plane implements Geometry {
         // TODO Auto-generated method stub
         Point3D p0 = ray.getP0();
         Vector v = ray.getDir();
-        
+        Vector tai;
+        try{
+            tai = this.p0.subtract(p0);
+        } catch(IllegalArgumentException e){
+            //Ray starts from inside , therefor there is no intersection
+            return null;
+        }
 
 
-        Double tDenominator =normal.dotProduct(v);
+        double tDenominator =normal.dotProduct(v);
         if(isZero(tDenominator)){
             //parallel VectorTests
             return null;
         }
-        Double tNumerator = normal.dotProduct(v);
-        Double t = alignZero(tNumerator / tDenominator);
-        if (t < 0 ){
+        double tNumerator = normal.dotProduct(tai);
+        double t = alignZero(tNumerator / tDenominator);
+        if (t <= 0 ){
             return null;
         }else {
             return List.of(ray.getPoint(t));
