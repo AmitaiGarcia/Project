@@ -6,6 +6,7 @@ public class Point3D {
     public final Coordinate x;
     public final Coordinate y;
     public final Coordinate z;
+    public Object point;
     public static final Point3D ZERO = new Point3D(0, 0, 0);
 
     public Point3D(Coordinate x, Coordinate y, Coordinate z) {
