@@ -16,6 +16,8 @@ public class Tube implements Geometry {
     }
 
     /**
+     * this method return the axisray which runs through the center of the tube
+     * 
      * @return Ray
      */
     public Ray getAxisRay() {
@@ -23,6 +25,8 @@ public class Tube implements Geometry {
     }
 
     /**
+     * This method return the radius fromt he center of the tube to the edge
+     * 
      * @return double
      */
     public double getRadius() {
@@ -38,6 +42,8 @@ public class Tube implements Geometry {
     }
 
     /**
+     * This method return the normal vector to a tube
+     * 
      * @param gp
      * @return Vector
      */
@@ -53,6 +59,9 @@ public class Tube implements Geometry {
     }
 
     /**
+     * This method finds all the intersections between a given Ray and the tube (not
+     * implemented yet)
+     * 
      * @param ray
      * @return List<Point3D>
      */

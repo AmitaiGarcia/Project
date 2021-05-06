@@ -27,11 +27,9 @@ public class Point3D {
     }
 
     /**
-     * @param gp.x.coord
-     * @param gp.y.coord
-     * @param gv.head.x.coord
-     * @param gv.head.y.coord
-     * @param o
+     * this method subtracts 1 vector from another vector
+     * 
+     * @param gp
      * @return Vector
      */
     public Vector subtract(Point3D gp) { // gp = given point
@@ -40,21 +38,23 @@ public class Point3D {
     }
 
     /**
-     * @param gv.head.x.coord
-     * @param gv.head.y.coord
-     * @param o
+     * this method adds 1 vector to another vector and returns a Point3D
+     * 
+     * @param gv = given vector
      * @return Point3D
      */
-    public Point3D add(Vector gv) {// gv = given vector
+    public Point3D add(Vector gv) {
         return new Point3D(this.x.coord + gv.head.x.coord, this.y.coord + gv.head.y.coord,
                 this.z.coord + gv.head.z.coord);
     }
 
     /**
-     * @param o
+     * this method calculates the distance between 2 points and squares the result
+     * 
+     * @param gp = given point
      * @return double
      */
-    public double distanceSquared(Point3D gp) { // gp = given point
+    public double distanceSquared(Point3D gp) {
         double dx = x.coord - gp.x.coord;
         double dy = y.coord - gp.y.coord;
         double dz = z.coord - gp.z.coord;
@@ -62,14 +62,18 @@ public class Point3D {
     }
 
     /**
-     * @param o
+     * this method calculates the distance between 2 points
+     *
+     * @param gp = given point
      * @return double
      */
-    public double distance(Point3D gp) { // gp = given point
+    public double distance(Point3D gp) {
         return Math.sqrt(distanceSquared(gp));
     }
 
     /**
+     * this method checks if one point is equal to another point
+     * 
      * @param o
      * @return boolean
      */
@@ -84,23 +88,19 @@ public class Point3D {
         return Objects.equals(x, point3D.x) && Objects.equals(y, point3D.y) && Objects.equals(z, point3D.z);
     }
 
-    /**
-     * @return int
-     */
     @Override
     public int hashCode() {
         return Objects.hash(x, y, z);
     }
 
-    /**
-     * @return String
-     */
     @Override
     public String toString() {
         return "(" + x + ", " + y + ", " + z + ")";
     }
 
     /**
+     * this method return the X.coordinate
+     * 
      * @return double
      */
     public double getX() {
@@ -108,6 +108,8 @@ public class Point3D {
     }
 
     /**
+     * this method return the Y.coordinate
+     * 
      * @return double
      */
     public double getY() {
@@ -115,6 +117,8 @@ public class Point3D {
     }
 
     /**
+     * this method return the Z.coordinate
+     * 
      * @return double
      */
     public double getZ() {

@@ -21,6 +21,8 @@ public class Cylinder extends Tube {
     }
 
     /**
+     * this method return the height of the cylinder
+     * 
      * @return double
      */
     public double getHeight() {
@@ -28,6 +30,7 @@ public class Cylinder extends Tube {
     }
 
     /**
+     *
      * @return String
      */
     @Override
@@ -37,6 +40,8 @@ public class Cylinder extends Tube {
     }
 
     /**
+     * This method calculates and returns the normal vector (not implemented)
+     * 
      * @param gp
      * @return Vector
      */

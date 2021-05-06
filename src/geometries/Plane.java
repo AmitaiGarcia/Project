@@ -17,11 +17,24 @@ public class Plane implements Geometry {
     private Point3D p0;
     private Vector normal;
 
+    /**
+     * This constructor creates a plane class with 1 point P0 and the normal vector
+     * 
+     * @param p0
+     * @param vector
+     */
     public Plane(Point3D p0, Vector normal) {
         this.p0 = p0;
         this.normal = normal.normalized();
     }
 
+    /**
+     * This constructor creates a plane class with 3 given points
+     * 
+     * @param p1
+     * @param p2
+     * @param p3
+     */
     public Plane(Point3D p1, Point3D p2, Point3D p3) {
         this.p0 = p1;
         Vector v1 = p2.subtract(p1);
@@ -31,6 +44,8 @@ public class Plane implements Geometry {
     }
 
     /**
+     * This method return P0
+     * 
      * @return Point3D
      */
     public Point3D getP0() {
@@ -38,6 +53,8 @@ public class Plane implements Geometry {
     }
 
     /**
+     * This method returns the normal vector (parameter of the class)
+     * 
      * @return Vector
      */
     public Vector getNormal() {
@@ -54,6 +71,8 @@ public class Plane implements Geometry {
     }
 
     /**
+     * This method find the normal vector to a plane
+     * 
      * @param gp
      * @return Vector
      */
@@ -64,6 +83,8 @@ public class Plane implements Geometry {
     }
 
     /**
+     * This method finds all intersection points between a Ray and the plane
+     * 
      * @param ray
      * @return List<Point3D>
      */

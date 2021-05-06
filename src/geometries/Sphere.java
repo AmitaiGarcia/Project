@@ -25,6 +25,8 @@ public class Sphere implements Geometry {
     }
 
     /**
+     * This method return the center of the sphere
+     * 
      * @return Point3D
      */
     public Point3D getCenter() {
@@ -32,6 +34,8 @@ public class Sphere implements Geometry {
     }
 
     /**
+     * this method return the radius of the sphere
+     * 
      * @return double
      */
     public double getRadius() {
@@ -39,6 +43,9 @@ public class Sphere implements Geometry {
     }
 
     /**
+     * This method calculates the normal bector using a given point (gp) subtracting
+     * it from the center and normalizing it
+     * 
      * @param gp
      * @return Vector
      */
@@ -57,6 +64,8 @@ public class Sphere implements Geometry {
     }
 
     /**
+     * This method finds all the intersections between a given Ray and the sphere
+     * 
      * @param ray
      * @return List<Point3D>
      */
