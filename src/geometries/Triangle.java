@@ -16,8 +16,8 @@ public class Triangle extends Polygon {
         super(p1, p2, p3);
     }
     public List<Point3D>findIntersections(Ray ray){
-        List<Point3D>planItersections = plane.findIntersections(ray);
-        if(planItersections==null) return null;
+        List<Point3D>planeItersections = plane.findIntersections(ray);
+        if(planeItersections==null) return null;
         Point3D p0 = ray.getP0();
         Vector v = ray.getDir();
 
@@ -25,12 +25,15 @@ public class Triangle extends Polygon {
         Vector v2 = _vertices.get(1).subtract(p0);
         Vector v3 = _vertices.get(2).subtract(p0);
 
-        double t1 = v.dotProduct(v1.crossProduct(v2));
-        if (isZero(t1)) return null;
-        double t2 = v.dotProduct(v2.crossProduct(v3));
-        if (isZero(t2)) return null;
-        double t3 = v.dotProduct(v3.crossProduct(v1));
-        if (isZero(t3)) return null;
+        double N1 = v.dotProduct(v1.crossProduct(v2));
+        if (isZero(N1)) return null;
+        double N2 = v.dotProduct(v2.crossProduct(v3));
+        if (isZero(N2)) return null;
+        double N3 = v.dotProduct(v3.crossProduct(v1));
+        if (isZero(N3)) return null;
+            // pt is iniside if they hav ethe same sign 
+        return ((N1 > 0 && N2 > 0 && N3 > 0)|| (N1 < 0 && N2 < 0 && N3 < 0)) ? planeItersections : null;
+
         
     }
 }
