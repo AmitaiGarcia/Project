@@ -5,6 +5,7 @@ import java.util.List;
 import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
+import static primitives.Util.isZero;
 
 /**
  * Plane class represents 2-dimensional Plane in 3D Cartesian coordinate system
@@ -70,6 +71,33 @@ public class Plane implements Geometry {
     @Override
     public List<Point3D> findIntersections(Ray ray) {
         // TODO Auto-generated method stub
+        Point3D p0 = ray.getP0();
+        Vector v = ray.getDir();
+        Vector tai;
+        try{
+            tai = this.p0.subtract(p0);
+        } catch(IllegalArgumentException e){
+            //Ray starts from inside , therefor there is no intersection
+            return null;
+        }
+
+
+        double tDenominator =normal.dotProduct(v);
+        if(isZero(tDenominator)){
+            //parallel VectorTests
+            return null;
+        }
+        double tNumerator = normal.dotProduct(tai);
+        double t = alignZero(tNumerator / tDenominator);
+        if (t <= 0 ){
+            return null;
+        }else {
+            return List.of(ray.getPoint(t));
+        }
+    
+    }
+
+    private Double alignZero(double d) {
         return null;
     }
 
