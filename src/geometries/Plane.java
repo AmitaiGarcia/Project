@@ -5,6 +5,7 @@ import java.util.List;
 import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
+import static primitives.Util.isZero;
 
 public class Plane implements Geometry {
     private Point3D p0;
@@ -46,6 +47,27 @@ public class Plane implements Geometry {
     @Override
     public List<Point3D> findIntersections(Ray ray) {
         // TODO Auto-generated method stub
+        Point3D p0 = ray.getP0();
+        Vector v = ray.getDir();
+        
+
+
+        Double tDenominator =normal.dotProduct(v);
+        if(isZero(tDenominator)){
+            //parallel VectorTests
+            return null;
+        }
+        Double tNumerator = normal.dotProduct(v);
+        Double t = alignZero(tNumerator / tDenominator);
+        if (t < 0 ){
+            return null;
+        }else {
+            return List.of(ray.getPoint(t));
+        }
+    
+    }
+
+    private Double alignZero(double d) {
         return null;
     }
 
