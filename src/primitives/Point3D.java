@@ -26,16 +26,34 @@ public class Point3D {
         this.z = new Coordinate(p.z);
     }
 
+    /**
+     * @param gp.x.coord
+     * @param gp.y.coord
+     * @param gv.head.x.coord
+     * @param gv.head.y.coord
+     * @param o
+     * @return Vector
+     */
     public Vector subtract(Point3D gp) { // gp = given point
         return new Vector(new Point3D(x.coord - gp.x.coord, y.coord - gp.y.coord, z.coord - gp.z.coord));
 
     }
 
+    /**
+     * @param gv.head.x.coord
+     * @param gv.head.y.coord
+     * @param o
+     * @return Point3D
+     */
     public Point3D add(Vector gv) {// gv = given vector
         return new Point3D(this.x.coord + gv.head.x.coord, this.y.coord + gv.head.y.coord,
                 this.z.coord + gv.head.z.coord);
     }
 
+    /**
+     * @param o
+     * @return double
+     */
     public double distanceSquared(Point3D gp) { // gp = given point
         double dx = x.coord - gp.x.coord;
         double dy = y.coord - gp.y.coord;
@@ -43,10 +61,18 @@ public class Point3D {
         return dx * dx + dy * dy + dz * dz;
     }
 
+    /**
+     * @param o
+     * @return double
+     */
     public double distance(Point3D gp) { // gp = given point
         return Math.sqrt(distanceSquared(gp));
     }
 
+    /**
+     * @param o
+     * @return boolean
+     */
     @Override
     public boolean equals(Object o) {
         if (o == this)
@@ -58,24 +84,39 @@ public class Point3D {
         return Objects.equals(x, point3D.x) && Objects.equals(y, point3D.y) && Objects.equals(z, point3D.z);
     }
 
+    /**
+     * @return int
+     */
     @Override
     public int hashCode() {
         return Objects.hash(x, y, z);
     }
 
+    /**
+     * @return String
+     */
     @Override
     public String toString() {
         return "(" + x + ", " + y + ", " + z + ")";
     }
 
+    /**
+     * @return double
+     */
     public double getX() {
         return this.x.coord;
     }
 
+    /**
+     * @return double
+     */
     public double getY() {
         return this.y.coord;
     }
 
+    /**
+     * @return double
+     */
     public double getZ() {
         return this.z.coord;
     }

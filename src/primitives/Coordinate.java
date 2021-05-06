@@ -48,6 +48,9 @@ public final class Coordinate {
         return isZero(coord - other.coord);
     }
 
+    /**
+     * @return String
+     */
     @Override
     public String toString() {
         return "" + coord;

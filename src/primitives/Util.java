@@ -15,6 +15,10 @@ public abstract class Util {
     private Util() {
     }
 
+    /**
+     * @param num
+     * @return int
+     */
     // double store format (bit level): seee eeee eeee (1.)mmmm � mmmm
     // 1 bit sign, 11 bits exponent, 53 bits (52 stored) normalized mantissa
     // the number is m+2^e where 1<=m<2
@@ -60,7 +64,7 @@ public abstract class Util {
 
     /**
      * Provide a real random number in range between min and max
-     * 
+     *
      * @param min
      * @param max
      * @return the random value

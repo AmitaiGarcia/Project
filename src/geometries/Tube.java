@@ -15,19 +15,32 @@ public class Tube implements Geometry {
         this.radius = radius;
     }
 
+    /**
+     * @return Ray
+     */
     public Ray getAxisRay() {
         return this.axisRay;
     }
 
+    /**
+     * @return double
+     */
     public double getRadius() {
         return this.radius;
     }
 
+    /**
+     * @return String
+     */
     @Override
     public String toString() {
         return "{" + " axisRay='" + getAxisRay() + "'" + ", radius='" + getRadius() + "'" + "}";
     }
 
+    /**
+     * @param gp
+     * @return Vector
+     */
     @Override
     public Vector getNormal(Point3D gp) {
 
@@ -39,6 +52,10 @@ public class Tube implements Geometry {
         return gp.subtract(o).normalize();
     }
 
+    /**
+     * @param ray
+     * @return List<Point3D>
+     */
     @Override
     public List<Point3D> findIntersections(Ray ray) {
         // TODO Auto-generated method stub

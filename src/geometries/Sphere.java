@@ -7,6 +7,14 @@ import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
 
+/**
+ * Sphere class represents 3-dimensional Sphere in 3D Cartesian coordinate
+ * system
+ *
+ * @author Amitai Rodrigues Garcia
+ * @author Mengistu Kerew
+ */
+
 public class Sphere implements Geometry {
     private Point3D center;
     private double radius;
@@ -16,25 +24,42 @@ public class Sphere implements Geometry {
         this.radius = radius;
     }
 
+    /**
+     * @return Point3D
+     */
     public Point3D getCenter() {
         return this.center;
     }
 
+    /**
+     * @return double
+     */
     public double getRadius() {
         return this.radius;
     }
 
+    /**
+     * @param gp
+     * @return Vector
+     */
     @Override
     public Vector getNormal(Point3D gp) {
 
         return center.subtract(gp).normalized();
     }
 
+    /**
+     * @return String
+     */
     @Override
     public String toString() {
         return "{" + " center='" + getCenter() + "'" + ", radius='" + getRadius() + "'" + "}";
     }
 
+    /**
+     * @param ray
+     * @return List<Point3D>
+     */
     @Override
     public List<Point3D> findIntersections(Ray ray) {
         Vector u;

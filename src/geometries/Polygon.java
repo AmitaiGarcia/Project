@@ -81,11 +81,19 @@ public class Polygon implements Geometry {
 		}
 	}
 
+	/**
+	 * @param point
+	 * @return Vector
+	 */
 	@Override
 	public Vector getNormal(Point3D point) {
 		return plane.getNormal();
 	}
 
+	/**
+	 * @param ray
+	 * @return List<Point3D>
+	 */
 	@Override
 	public List<Point3D> findIntersections(Ray ray) {
 		// TODO Auto-generated method stub

@@ -15,6 +15,9 @@ import org.junit.Test;
 public class PlaneTests {
 	Plane p1 = new Plane(new Point3D(0, 0, 0), new Point3D(1, 2, 0), new Point3D(2, 1, 0));
 
+	/**
+	 * Test method for {@link geometries.Plane#getNormal(primitives.Point3D)}.
+	 */
 	@Test
 	public void testNormal() {
 		// ============ Equivalence Partitions Tests ==============
@@ -26,6 +29,9 @@ public class PlaneTests {
 	}
 
 	@Test
+	/**
+	 * Test method for {@link geometries.Plane#findIntersections(primitives.Ray)}.
+	 */
 	public void findIntersections() {
 		Plane p2 = new Plane(new Point3D(0, 5, 0), new Vector(1, 0, 0));
 		// ============ Equivalence Partitions Tests ==============
