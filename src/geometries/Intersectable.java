@@ -12,6 +12,12 @@ import primitives.Ray;
  * @author Mengistu Kerew
  */
 
+/**
+ * This method will find the intersections between a Ray and an geometry
+ *
+ * @param ray
+ * @return list<Point3D>
+ */
 public interface Intersectable {
     public List<Point3D> findIntersections(Ray ray);
 
