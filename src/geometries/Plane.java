@@ -4,6 +4,7 @@ import java.util.List;
 
 import primitives.Point3D;
 import primitives.Ray;
+import primitives.Util;
 import primitives.Vector;
 import static primitives.Util.isZero;
 
@@ -20,7 +21,7 @@ public class Plane implements Geometry {
 
     /**
      * This constructor creates a plane class with 1 point P0 and the normal vector
-     * 
+     *
      * @param p0
      * @param vector
      */
@@ -31,7 +32,7 @@ public class Plane implements Geometry {
 
     /**
      * This constructor creates a plane class with 3 given points
-     * 
+     *
      * @param p1
      * @param p2
      * @param p3
@@ -46,7 +47,7 @@ public class Plane implements Geometry {
 
     /**
      * This method return P0
-     * 
+     *
      * @return Point3D
      */
     public Point3D getP0() {
@@ -55,7 +56,7 @@ public class Plane implements Geometry {
 
     /**
      * This method returns the normal vector (parameter of the class)
-     * 
+     *
      * @return Vector
      */
     public Vector getNormal() {
@@ -73,7 +74,7 @@ public class Plane implements Geometry {
 
     /**
      * This method find the normal vector to a plane
-     * 
+     *
      * @param gp
      * @return Vector
      */
@@ -85,41 +86,34 @@ public class Plane implements Geometry {
 
     /**
      * This method finds all intersection points between a Ray and the plane
-     * 
+     *
      * @param ray
      * @return List<Point3D>
      */
     @Override
     public List<Point3D> findIntersections(Ray ray) {
-        // TODO Auto-generated method stub
         Point3D p0 = ray.getP0();
         Vector v = ray.getDir();
         Vector tai;
-        try{
+        try {
             tai = this.p0.subtract(p0);
-        } catch(IllegalArgumentException e){
-            //Ray starts from inside , therefor there is no intersection
+        } catch (IllegalArgumentException e) {
+            // Ray starts from inside , therefor there is no intersection
             return null;
         }
 
-
-        double tDenominator =normal.dotProduct(v);
-        if(isZero(tDenominator)){
-            //parallel VectorTests
+        double tDenominator = normal.dotProduct(v);
+        if (isZero(tDenominator)) {
+            // parallel VectorTests
             return null;
         }
         double tNumerator = normal.dotProduct(tai);
-        double t = alignZero(tNumerator / tDenominator);
-        if (t <= 0 ){
+        double t = Util.alignZero(tNumerator / tDenominator);
+        if (t <= 0) {
             return null;
-        }else {
+        } else {
             return List.of(ray.getPoint(t));
         }
-    
-    }
 
-    private Double alignZero(double d) {
-        return null;
     }
-
 }

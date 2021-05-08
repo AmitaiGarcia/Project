@@ -31,33 +31,32 @@ public class TriangleTests {
 	@Test
 
 	public void findIntersectionsTest() {
-		Triangle triangle = new Triangle(new Point3D(0, 0, 0), new Point3D(0, 0, 3), new Point3D(2, 0, 0));
+		Triangle triangle = new Triangle(new Point3D(1, 0, 0), new Point3D(2, 0, 2), new Point3D(3, 0, 0));
 
 		// ============ Equivalence Partitions Tests ==============
 
 		// TC01:Inside Polygon/triangle (1 points)
-		Point3D p2 = new Point3D(1, 0, 1);
-		assertEquals("TC01: Failed triangle test ", List.of(p2),
-				triangle.findIntersections(new Ray(new Point3D(1, -2, 1), new Vector(0, 4, 0))));
+		assertEquals("TC01: Failed triangle test ", List.of(new Point3D(1.5, 0, 0.5)),
+				triangle.findIntersections(new Ray(new Point3D(1.5, -1, 0.5), new Vector(0, 1, 0))));
 
 		// TC02:Outside against edge (0 points)
 		assertNull("TC02: Failed triangle test",
-				triangle.findIntersections(new Ray(new Point3D(1, -2, 2), new Vector(0, 4, 0))));
+				triangle.findIntersections(new Ray(new Point3D(0.5, -1, 1), new Vector(0, 1, 0))));
 		// TC03:Outside against vertex (0 points)
 		assertNull("TC03: Failed triangle test",
-				triangle.findIntersections(new Ray(new Point3D(-1, -2, -1), new Vector(0, 4, 0))));
+				triangle.findIntersections(new Ray(new Point3D(2, -1, 2.5), new Vector(0, 1, 0))));
 
 		// =============== Boundary Values Tests ==================
 
 		// TC04: On edge (0 points)
 		assertNull("TC04: Failed triangle test",
-				triangle.findIntersections(new Ray(new Point3D(0, -1, 1), new Vector(0, 2, 0))));
+				triangle.findIntersections(new Ray(new Point3D(1.5, -1, 1), new Vector(0, 1, 0))));
 		// TC05: In Vertex (0 points)
 		assertNull("TC05: Failed triangle test",
-				triangle.findIntersections(new Ray(new Point3D(0, -1, 3), new Vector(0, 2, 0))));
+				triangle.findIntersections(new Ray(new Point3D(1, -1, 0), new Vector(0, 1, 0))));
 		// TC06: On edge's continuation (0 points)
 		assertNull("TC06: Failed triangle test",
-				triangle.findIntersections(new Ray(new Point3D(-0.75, -1, 3.98), new Vector(0, 2, 0))));
+				triangle.findIntersections(new Ray(new Point3D(2.17, -1, 2.34), new Vector(0, 1, 0))));
 
 	}
 }

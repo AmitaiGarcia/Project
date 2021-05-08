@@ -22,14 +22,19 @@ public class Triangle extends Polygon {
 
     public Triangle(Point3D p1, Point3D p2, Point3D p3) {
         super(p1, p2, p3);
+        _vertices.add(new Point3D(p1.getX(), p1.getY(), p1.getZ()));
+        _vertices.add(new Point3D(p2.getX(), p2.getY(), p2.getZ()));
+        _vertices.add(new Point3D(p3.getX(), p3.getY(), p3.getZ()));
     }
 
     /**
      * This method finds all the intersections between a given Ray and the triangle
-     * 
+     *
      * @param ray
      * @return List<Point3D>
      */
+
+    @Override
     public List<Point3D> findIntersections(Ray ray) {
         List<Point3D> planeItersections = plane.findIntersections(ray);
         if (planeItersections == null)
