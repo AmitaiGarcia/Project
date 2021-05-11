@@ -14,7 +14,7 @@ import scene.Scene;
  * @author Dan
  */
 public class RenderTests {
-        private Camera camera = new Camera(Point3D.ZERO, new Vector(0, 0, -1), new Vector(0, 1, 0)) //
+        private Camera camera = new Camera(Point3D.ZERO, new Vector(0, 1, 0), new Vector(0, 0, -1)) //
                         .setDistance(100) //
                         .setViewPlaneSize(500, 500);
 
@@ -46,8 +46,7 @@ public class RenderTests {
                 Render render = new Render() //
                                 .setImageWriter(imageWriter) //
                                 .setCamera(camera) //
-                                .setRayTrace(new RayTracerBasic(scene))//
-                                .setScene(scene);
+                                .setRayTrace(new RayTracerBasic(scene));
 
                 render.renderImage();
                 render.printGrid(100, new Color(java.awt.Color.YELLOW));

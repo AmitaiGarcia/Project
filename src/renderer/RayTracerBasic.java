@@ -13,6 +13,13 @@ public class RayTracerBasic extends RayTraceBase {
         super(scene);
     }
 
+    /**
+     * This method traces the ray and return the color of the closest point to the
+     * head of the ray
+     *
+     * @param ray
+     * @return Color
+     */
     @Override
     public Color traceRay(Ray ray) {
 
@@ -24,9 +31,15 @@ public class RayTracerBasic extends RayTraceBase {
         return calcColor(ray.findClosestPoint(intersections));
     }
 
+    /**
+     * At this point this method returns the ambientlight color.
+     *
+     * @param point
+     * @return Color
+     */
     private Color calcColor(Point3D point) {
 
-        return scene.background;
+        return Color.BLACK;
     }
 
 }

@@ -5,12 +5,10 @@ import java.util.MissingResourceException;
 import elements.Camera;
 import primitives.Color;
 import primitives.Ray;
-import scene.Scene;
 
 public class Render {
 
     ImageWriter imagewriter;
-    Scene scene;
     Camera camera;
     RayTraceBase raytrace;
 
@@ -22,17 +20,6 @@ public class Render {
      */
     public Render setImageWriter(ImageWriter imagewriter) {
         this.imagewriter = imagewriter;
-        return this;
-    }
-
-    /**
-     * This method returns a render and sets the scene
-     *
-     * @param scene
-     * @return Render
-     */
-    public Render setScene(Scene scene) {
-        this.scene = scene;
         return this;
     }
 
@@ -69,9 +56,6 @@ public class Render {
         if (imagewriter == null) {
             throw new MissingResourceException("imagewriter cannot be null", "Imagewriter", "");
         }
-        if (scene == null) {
-            throw new MissingResourceException("scene cannot be null", "Scene", "");
-        }
         if (raytrace == null) {
             throw new MissingResourceException("raytrace cannot be null", "raytrace", "");
         }
@@ -82,11 +66,11 @@ public class Render {
         Ray vpray;
         Color pcolor;
 
-        for (int yPixel = 1; yPixel <= nY; yPixel++) {
-            for (int xPixel = 1; xPixel <= nX; xPixel++) {
-                vpray = camera.constructRayThroughPixel(nX, nY, 1, 1);
+        for (int yPixel = 0; yPixel < nY; yPixel++) {
+            for (int xPixel = 0; xPixel < nX; xPixel++) {
+                vpray = camera.constructRayThroughPixel(nX, nY, xPixel, yPixel);
                 pcolor = raytrace.traceRay(vpray);
-                imagewriter.writePixel(xPixel - 1, yPixel - 1, pcolor);
+                imagewriter.writePixel(xPixel, yPixel, pcolor);
 
             }
 
