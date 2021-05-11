@@ -1,6 +1,7 @@
 package geometries;
 
 import java.util.List;
+import static primitives.Util.*;
 
 import primitives.Point3D;
 import primitives.Ray;
@@ -17,7 +18,7 @@ public class Tube implements Geometry {
 
     /**
      * this method return the axisray which runs through the center of the tube
-     * 
+     *
      * @return Ray
      */
     public Ray getAxisRay() {
@@ -26,7 +27,7 @@ public class Tube implements Geometry {
 
     /**
      * This method return the radius fromt he center of the tube to the edge
-     * 
+     *
      * @return double
      */
     public double getRadius() {
@@ -43,7 +44,7 @@ public class Tube implements Geometry {
 
     /**
      * This method return the normal vector to a tube
-     * 
+     *
      * @param gp
      * @return Vector
      */
@@ -53,7 +54,7 @@ public class Tube implements Geometry {
         Point3D o = axisRay.getP0();
         Vector v = axisRay.getDir();
         double t = gp.subtract(o).dotProduct(v);
-        if (t != 0)
+        if (!isZero(t))
             o = o.add(v.scale(t));
         return gp.subtract(o).normalize();
     }
@@ -61,7 +62,7 @@ public class Tube implements Geometry {
     /**
      * This method finds all the intersections between a given Ray and the tube (not
      * implemented yet)
-     * 
+     *
      * @param ray
      * @return List<Point3D>
      */
