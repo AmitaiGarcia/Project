@@ -70,6 +70,8 @@ public class Camera {
     }
 
     /**
+     * This method cosntructs a ray through certain pixels and return the ray
+     * 
      * @param nX
      * @param nY
      * @param j
