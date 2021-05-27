@@ -1,6 +1,8 @@
 package geometries;
 
+import java.util.ArrayList;
 import java.util.List;
+import static primitives.Util.*;
 
 import primitives.Point3D;
 import primitives.Ray;
@@ -15,7 +17,7 @@ import static primitives.Util.isZero;
  * @author Mengistu Kerew
  */
 
-public class Plane implements Geometry {
+public class Plane extends Geometry {
     private Point3D p0;
     private Vector normal;
 
@@ -90,30 +92,27 @@ public class Plane implements Geometry {
      * @param ray
      * @return List<Point3D>
      */
+
     @Override
-    public List<Point3D> findIntersections(Ray ray) {
-        Point3D p0 = ray.getP0();
-        Vector v = ray.getDir();
-        Vector tai;
-        try {
-            tai = this.p0.subtract(p0);
-        } catch (IllegalArgumentException e) {
-            // Ray starts from inside , therefor there is no intersection
-            return null;
+    public List<GeoPoint> findGeoIntersections(Ray ray) {
+
+        Vector normal = this.getNormal(p0);
+        Vector p0q0 = p0.subtract(ray.getP0());
+        if (p0.equals(ray.getP0())) {
+            throw new IllegalArgumentException("the points cant be equal");
         }
 
-        double tDenominator = normal.dotProduct(v);
-        if (isZero(tDenominator)) {
-            // parallel VectorTests
+        if (isZero(normal.dotProduct(ray.getDir())))
             return null;
-        }
-        double tNumerator = normal.dotProduct(tai);
-        double t = Util.alignZero(tNumerator / tDenominator);
-        if (t <= 0) {
-            return null;
-        } else {
-            return List.of(ray.getPoint(t));
-        }
 
+        double t = alignZero(normal.dotProduct(p0q0)) / (normal.dotProduct(ray.getDir()));
+        if (t > 0) {
+            Point3D endP = ray.getPoint(t);
+            List<GeoPoint> intersections = new ArrayList<>();
+            intersections.add(new GeoPoint(this, endP));
+            return intersections;
+        }
+        return null;
     }
+
 }

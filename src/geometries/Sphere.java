@@ -2,6 +2,7 @@ package geometries;
 
 import java.util.ArrayList;
 import java.util.List;
+import static primitives.Util.*;
 
 import primitives.Point3D;
 import primitives.Ray;
@@ -15,7 +16,7 @@ import primitives.Vector;
  * @author Mengistu Kerew
  */
 
-public class Sphere implements Geometry {
+public class Sphere extends Geometry {
     private Point3D center;
     private double radius;
 
@@ -26,7 +27,7 @@ public class Sphere implements Geometry {
 
     /**
      * This method return the center of the sphere
-     * 
+     *
      * @return Point3D
      */
     public Point3D getCenter() {
@@ -35,7 +36,7 @@ public class Sphere implements Geometry {
 
     /**
      * this method return the radius of the sphere
-     * 
+     *
      * @return double
      */
     public double getRadius() {
@@ -45,7 +46,7 @@ public class Sphere implements Geometry {
     /**
      * This method calculates the normal bector using a given point (gp) subtracting
      * it from the center and normalizing it
-     * 
+     *
      * @param gp
      * @return Vector
      */
@@ -65,56 +66,39 @@ public class Sphere implements Geometry {
 
     /**
      * This method finds all the intersections between a given Ray and the sphere
-     * 
+     *
      * @param ray
      * @return List<Point3D>
      */
+
     @Override
-    public List<Point3D> findIntersections(Ray ray) {
-        Vector u;
-        try {
-            // u = O - P0
-            u = this.center.subtract(ray.getP0());
-        } catch (IllegalArgumentException e) {
-            return List.of(ray.getPoint(radius));
-        }
-        // tm = L * V
-        double tm = u.dotProduct(ray.getDir());
-
-        // d = (|L|^2 - tm^2)^0.5
-        double d = Math.sqrt(u.lengthSquared() - (tm * tm));
-        if (d >= radius)
-            return null;
-
-        // th = (r^2 - d^2)^0.5
-        double th = Math.sqrt(Math.pow(radius, 2) - Math.pow(d, 2));
-
-        // t1 = tm - th
-        // t2 = tm + th
-        double t1 = tm - th;
-        double t2 = tm + th;
-
-        if (t1 > 0 || t2 > 0) {
-            List<Point3D> list = new ArrayList<>();
-
-            // take only t1 > 0
-            if (t1 > 0) {
-                // P1 = P0 + t1V
-                Point3D P1 = ray.getPoint(t1);
-                list.add(P1);
+    public List<GeoPoint> findGeoIntersections(Ray ray) {
+        // TODO Auto-generated method stub
+        ArrayList<GeoPoint> intersectionsPoints = null;
+        Vector u = new Vector(center.subtract(ray.getP0())); // u = O - p0
+        double tm = ray.getDir().dotProduct(u); //// t_m = v * u
+        double d = Math.sqrt(u.lengthSquared() - tm * tm); // d = sqrt(|u|^2 - t_m^2)
+        double t = (alignZero(radius - d));
+        if ((d < radius) && t != 0.0 && !((tm < 0) && (u.length() > radius))) {
+            double th = Math.sqrt(radius * radius - d * d); //// th = sqrt(r^2 - d^2)
+            double t1 = tm + th;
+            Point3D p1 = new Point3D(ray.getPoint(t1));
+            if (!p1.equals(ray.getP0())) {
+                intersectionsPoints = new ArrayList<>();
+                intersectionsPoints.add(new GeoPoint(this, p1));
             }
-
-            // take only t2 > 0
-            if (t2 > 0) {
-                // P2 = P0 + t2V
-                Point3D P2 = ray.getPoint(t2);
-                list.add(P2);
+            if (!isZero(tm) && (tm >= th)) {
+                double t2 = tm - th;
+                Point3D p2 = new Point3D(ray.getPoint(t2));
+                if (!p2.equals(ray.getP0())) {
+                    if (intersectionsPoints.isEmpty()) {
+                        intersectionsPoints = new ArrayList<>();
+                    }
+                    intersectionsPoints.add(new GeoPoint(this, p2));
+                }
             }
-
-            return list;
         }
-
-        else
-            return null;
+        return intersectionsPoints;
     }
+
 }

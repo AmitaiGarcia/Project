@@ -2,6 +2,7 @@ package primitives;
 
 import java.util.List;
 import java.util.Objects;
+import geometries.Intersectable.GeoPoint;
 
 public class Ray {
     public Point3D p0;
@@ -76,7 +77,7 @@ public class Ray {
     /**
      * This method will find the closest point to the ray's head (p0) from a list of
      * points
-     * 
+     *
      * @param list
      * @return Point3D
      */
@@ -90,6 +91,19 @@ public class Ray {
                 closest = point;
         }
         return closest;
+    }
+
+    public GeoPoint findClosestGeoPoint(List<GeoPoint> list) {
+
+        if (list == null || list.isEmpty())
+            return null;
+        GeoPoint closest = list.get(0);
+        for (GeoPoint point : list) {
+            if (p0.distance(closest.point) > p0.distance(point.point))
+                closest = point;
+        }
+        return closest;
+
     }
 
 }

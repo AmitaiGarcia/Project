@@ -59,7 +59,6 @@ public class Render {
         if (raytrace == null) {
             throw new MissingResourceException("raytrace cannot be null", "raytrace", "");
         }
-        // TODO: throw UnsupportedOperationException{};
 
         int nY = imagewriter.getNy();
         int nX = imagewriter.getNx();

@@ -7,7 +7,7 @@ import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
 
-public class Tube implements Geometry {
+public class Tube extends Geometry {
     private Ray axisRay;
     private double radius;
 
@@ -59,15 +59,8 @@ public class Tube implements Geometry {
         return gp.subtract(o).normalize();
     }
 
-    /**
-     * This method finds all the intersections between a given Ray and the tube (not
-     * implemented yet)
-     *
-     * @param ray
-     * @return List<Point3D>
-     */
     @Override
-    public List<Point3D> findIntersections(Ray ray) {
+    public List<GeoPoint> findGeoIntersections(Ray ray) {
         // TODO Auto-generated method stub
         return null;
     }

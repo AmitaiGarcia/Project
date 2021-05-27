@@ -27,16 +27,9 @@ public class Triangle extends Polygon {
         _vertices.add(new Point3D(p3.getX(), p3.getY(), p3.getZ()));
     }
 
-    /**
-     * This method finds all the intersections between a given Ray and the triangle
-     *
-     * @param ray
-     * @return List<Point3D>
-     */
-
     @Override
-    public List<Point3D> findIntersections(Ray ray) {
-        List<Point3D> planeItersections = plane.findIntersections(ray);
+    public List<GeoPoint> findGeoIntersections(Ray ray) {
+        List<GeoPoint> planeItersections = plane.findGeoIntersections(ray);
         if (planeItersections == null)
             return null;
         Point3D p0 = ray.getP0();
@@ -59,4 +52,5 @@ public class Triangle extends Polygon {
         return ((N1 > 0 && N2 > 0 && N3 > 0) || (N1 < 0 && N2 < 0 && N3 < 0)) ? planeItersections : null;
 
     }
+
 }

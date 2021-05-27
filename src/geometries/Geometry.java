@@ -1,6 +1,7 @@
 package geometries;
 
 import primitives.Vector;
+import primitives.Color;
 import primitives.Point3D;
 
 /**
@@ -9,7 +10,23 @@ import primitives.Point3D;
  * @author Amitai Rodrigues Garcia
  * @author Mengistu Kerew
  */
-public interface Geometry extends Intersectable {
+public abstract class Geometry implements Intersectable {
 
-    public Vector getNormal(Point3D gp);
+    protected Color emmission = Color.BLACK;
+
+    public Geometry() {
+
+        this.emmission = Color.BLACK;
+    }
+
+    public Color getEmmission() {
+        return this.emmission;
+    }
+
+    public Geometry setEmmission(Color emmission) {
+        this.emmission = emmission;
+        return this;
+    }
+
+    public abstract Vector getNormal(Point3D gp);
 }

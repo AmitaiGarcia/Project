@@ -2,6 +2,8 @@ package primitives;
 
 import java.util.Objects;
 
+import geometries.Intersectable.GeoPoint;
+
 public class Point3D {
     public final Coordinate x;
     public final Coordinate y;
@@ -29,7 +31,7 @@ public class Point3D {
 
     /**
      * this method subtracts 1 vector from another vector
-     * 
+     *
      * @param gp
      * @return Vector
      */
@@ -40,7 +42,7 @@ public class Point3D {
 
     /**
      * this method adds 1 vector to another vector and returns a Point3D
-     * 
+     *
      * @param gv = given vector
      * @return Point3D
      */
@@ -51,7 +53,7 @@ public class Point3D {
 
     /**
      * this method calculates the distance between 2 points and squares the result
-     * 
+     *
      * @param gp = given point
      * @return double
      */
@@ -65,16 +67,16 @@ public class Point3D {
     /**
      * this method calculates the distance between 2 points
      *
-     * @param gp = given point
+     * @param closest = given point
      * @return double
      */
-    public double distance(Point3D gp) {
-        return Math.sqrt(distanceSquared(gp));
+    public double distance(Point3D closest) {
+        return Math.sqrt(distanceSquared(closest));
     }
 
     /**
      * this method checks if one point is equal to another point
-     * 
+     *
      * @param o
      * @return boolean
      */
@@ -101,7 +103,7 @@ public class Point3D {
 
     /**
      * this method return the X.coordinate
-     * 
+     *
      * @return double
      */
     public double getX() {
@@ -110,7 +112,7 @@ public class Point3D {
 
     /**
      * this method return the Y.coordinate
-     * 
+     *
      * @return double
      */
     public double getY() {
@@ -119,7 +121,7 @@ public class Point3D {
 
     /**
      * this method return the Z.coordinate
-     * 
+     *
      * @return double
      */
     public double getZ() {

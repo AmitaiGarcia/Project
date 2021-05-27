@@ -17,6 +17,10 @@ public class Vector {
         this(new Point3D(x, y, z));
     }
 
+    public Vector(Vector v) {
+        this.head = v.head;
+    }
+
     /**
      * @return Point3D
      */
