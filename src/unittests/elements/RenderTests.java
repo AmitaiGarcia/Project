@@ -72,6 +72,7 @@ public class RenderTests {
                                 new Triangle(new Point3D(100, 0, -100), new Point3D(0, 100, -100),
                                                 new Point3D(100, 100, -100)), // up
                                                                               // right
+
                                 new Triangle(new Point3D(-100, 0, -100), new Point3D(0, -100, -100),
                                                 new Point3D(-100, -100, -100)) // down
                                                                                // left

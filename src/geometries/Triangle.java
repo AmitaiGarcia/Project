@@ -49,7 +49,11 @@ public class Triangle extends Polygon {
         if (isZero(N3))
             return null;
         // pt is inside if they have the same sign
-        return ((N1 > 0 && N2 > 0 && N3 > 0) || (N1 < 0 && N2 < 0 && N3 < 0)) ? planeItersections : null;
+        if ((N1 > 0 && N2 > 0 && N3 > 0) || (N1 < 0 && N2 < 0 && N3 < 0)) {
+            planeItersections.get(0).geometry = this;
+            return planeItersections;
+        }
+        return null;
 
     }
 

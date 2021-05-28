@@ -12,7 +12,7 @@ import primitives.Point3D;
  */
 public abstract class Geometry implements Intersectable {
 
-    protected Color emmission = Color.BLACK;
+    protected Color emmission;
 
     public Geometry() {
 
