@@ -60,5 +60,9 @@ public interface Intersectable {
             return result;
         }
 
+        public Point3D getPoint() {
+            return null;
+        }
+
     }
 }
