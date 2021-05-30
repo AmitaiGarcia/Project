@@ -4,7 +4,6 @@ import java.util.List;
 import geometries.Intersectable.GeoPoint;
 
 import primitives.Color;
-import primitives.Point3D;
 import primitives.Ray;
 import scene.Scene;
 
@@ -40,7 +39,11 @@ public class RayTracerBasic extends RayTraceBase {
      */
     private Color calcColor(GeoPoint point) {
 
-        return point.geometry.getEmmission();
+        return point.geometry.getEmmission().add(scene.ambientLight.getIntensity());
     }
 
+    private Color calcColor(GeoPoint point, Ray ray) {
+
+        return point.geometry.getEmmission().add(scene.ambientLight.getIntensity());
+    }
 }
