@@ -35,6 +35,12 @@ public class Geometries implements Intersectable {
         }
     }
 
+    /**
+     * This Method finds all the Intersections using a Geopoint
+     * 
+     * @param ray
+     * @return List<GeoPoint>
+     */
     @Override
     public List<GeoPoint> findGeoIntersections(Ray ray) {
 

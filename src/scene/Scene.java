@@ -23,21 +23,45 @@ public class Scene {
         lights = new LinkedList<>();
     }
 
+    /**
+     * This method sets the lights parameter and returns the object
+     *
+     * @param lights
+     * @return Scene
+     */
     public Scene setLights(List<LightSource> lights) {
         this.lights = lights;
         return this;
     }
 
+    /**
+     * this method sets the background parameter and returns the object
+     *
+     * @param background
+     * @return Scene
+     */
     public Scene setBackground(Color background) {
         this.background = background;
         return this;
     }
 
+    /**
+     * This method sets the Ambientlight parameter and returns the object
+     *
+     * @param ambientLight
+     * @return Scene
+     */
     public Scene setAmbientLight(AmbientLight ambientLight) {
         this.ambientLight = ambientLight;
         return this;
     }
 
+    /**
+     * this method sets the geometries parameter and returns the object
+     * 
+     * @param geometries
+     * @return Scene
+     */
     public Scene setGeometries(Geometries geometries) {
         this.geometries = geometries;
         return this;

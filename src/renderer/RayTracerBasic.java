@@ -37,9 +37,10 @@ public class RayTracerBasic extends RayTraceBase {
     }
 
     /**
-     * At this point this method returns the ambientlight color.
+     * This method calculates the color using the simple Phong model
      *
      * @param point
+     * @param ray
      * @return Color
      */
 
@@ -54,6 +55,13 @@ public class RayTracerBasic extends RayTraceBase {
 
     }
 
+    /**
+     * This is a helper method to calculate the color using the phong model
+     *
+     * @param point
+     * @param ray
+     * @return Color
+     */
     private Color calcLocaleffects(GeoPoint point, Ray ray) {
         Vector v = ray.getDir();
         Vector n = point.geometry.getNormal(point.point);
@@ -78,6 +86,19 @@ public class RayTracerBasic extends RayTraceBase {
         return color;
     }
 
+    /**
+     *
+     * this is a helper method that calculates specular part of the simple phong
+     * model
+     *
+     * @param ks
+     * @param l
+     * @param n
+     * @param v
+     * @param nShininess
+     * @param lightIntensity
+     * @return Color
+     */
     private Color calcSpecular(double ks, Vector l, Vector n, Vector v, int nShininess, Color lightIntensity) {
         double ln = l.dotProduct(n);
 
@@ -90,6 +111,17 @@ public class RayTracerBasic extends RayTraceBase {
         return lightIntensity.scale(maxPow * ks);
     }
 
+    /**
+     *
+     * * this is a helper method that calculates Diffusive part of the simple phong
+     * model
+     * 
+     * @param kd
+     * @param l
+     * @param n
+     * @param lightIntensity
+     * @return Color
+     */
     private Color calcDiffusive(double kd, Vector l, Vector n, Color lightIntensity) {
 
         double ln = Math.abs(l.dotProduct(n));

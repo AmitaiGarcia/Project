@@ -12,7 +12,12 @@ import primitives.Color;
  */
 
 public class AmbientLight extends Light {
-
+    /**
+     * Constructor for AmbientLight which calculates I0*kA
+     * 
+     * @param Intensity
+     * @param ka
+     */
     public AmbientLight(Color intensity, double ka) {
         super(intensity.scale(ka));
     }

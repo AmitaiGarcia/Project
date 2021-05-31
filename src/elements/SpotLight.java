@@ -30,10 +30,27 @@ public class SpotLight extends PointLight {
 
     }
 
+    /**
+     * constructor for Spotlight class where Kc is 1 by default and Kq and Kl are 0
+     * by default
+     *
+     * @param color
+     * @param position
+     * @param direction
+     * @param q
+     * @param l
+     * @param c
+     */
     public SpotLight(Color color, Point3D position, Vector direction) {
         this(color, position, direction, 0d, 0d, 1d);
     }
 
+    /**
+     * Get intensity method for the SpotLight class
+     * 
+     * @param p
+     * @return Color
+     */
     @Override
     public Color getIntensity(Point3D p) {
         double projection = direction.dotProduct(getL(p));

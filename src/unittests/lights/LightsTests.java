@@ -142,4 +142,21 @@ public class LightsTests {
                 render.writeToImage();
         }
 
+        @Test
+        public void spheremultlight() {
+                scene1.geometries.add(sphere);
+                scene1.lights.add(new PointLight(new Color(500, 300, 0), new Point3D(-25, -25, 25))//
+                                .setKL(0.00001).setKQ(0.000001));
+                scene1.lights.add(new SpotLight(new Color(500, 300, 0), new Point3D(-50, -50, 50), new Vector(1, 1, -2)) //
+                                .setKL(0.00001).setKQ(0.00000001));
+
+                ImageWriter imageWriter = new ImageWriter("lightSpheremultlight", 500, 500);
+                Render render = new Render()//
+                                .setImageWriter(imageWriter) //
+                                .setCamera(camera1) //
+                                .setRayTrace(new RayTracerBasic(scene1));
+                render.renderImage();
+                render.writeToImage();
+        }
+
 }

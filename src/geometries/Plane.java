@@ -89,7 +89,7 @@ public class Plane extends Geometry {
      * This method finds all intersection points between a Ray and the plane
      *
      * @param ray
-     * @return List<Point3D>
+     * @return List<Geopoint>
      */
 
     @Override

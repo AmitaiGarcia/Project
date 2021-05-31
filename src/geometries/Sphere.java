@@ -68,7 +68,7 @@ public class Sphere extends Geometry {
      * This method finds all the intersections between a given Ray and the sphere
      *
      * @param ray
-     * @return List<Point3D>
+     * @return List<Geopoint>
      */
 
     @Override
