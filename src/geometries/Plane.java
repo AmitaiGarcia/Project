@@ -6,7 +6,6 @@ import static primitives.Util.*;
 
 import primitives.Point3D;
 import primitives.Ray;
-import primitives.Util;
 import primitives.Vector;
 import static primitives.Util.isZero;
 
@@ -96,16 +95,16 @@ public class Plane extends Geometry {
     @Override
     public List<GeoPoint> findGeoIntersections(Ray ray) {
 
-        Vector normal = this.getNormal(p0);
+        Vector norm = this.getNormal(p0);
         Vector p0q0 = p0.subtract(ray.getP0());
         if (p0.equals(ray.getP0())) {
             throw new IllegalArgumentException("the points cant be equal");
         }
 
-        if (isZero(normal.dotProduct(ray.getDir())))
+        if (isZero(norm.dotProduct(ray.getDir())))
             return null;
 
-        double t = alignZero(normal.dotProduct(p0q0)) / (normal.dotProduct(ray.getDir()));
+        double t = alignZero(norm.dotProduct(p0q0)) / (norm.dotProduct(ray.getDir()));
         if (t > 0) {
             Point3D endP = ray.getPoint(t);
             List<GeoPoint> intersections = new ArrayList<>();

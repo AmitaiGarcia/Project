@@ -73,7 +73,6 @@ public class Sphere extends Geometry {
 
     @Override
     public List<GeoPoint> findGeoIntersections(Ray ray) {
-        // TODO Auto-generated method stub
         ArrayList<GeoPoint> intersectionsPoints = null;
         Vector u = new Vector(center.subtract(ray.getP0())); // u = O - p0
         double tm = ray.getDir().dotProduct(u); //// t_m = v * u

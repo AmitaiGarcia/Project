@@ -14,7 +14,11 @@ import primitives.Color;
 public class AmbientLight extends Light {
 
     public AmbientLight(Color intensity, double ka) {
-        this.intensity = intensity.scale(ka);
+        super(intensity.scale(ka));
+    }
+
+    public AmbientLight() {
+        super(Color.BLACK);
     }
 
 }

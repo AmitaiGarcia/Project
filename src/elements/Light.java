@@ -12,6 +12,10 @@ public abstract class Light {
     /** Color of the light */
     Color intensity;
 
+    protected Light(Color intensity) {
+        this.intensity = intensity;
+    }
+
     /**
      * Getter method for Intensity in Light class
      *
