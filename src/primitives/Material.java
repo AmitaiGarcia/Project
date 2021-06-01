@@ -1,6 +1,13 @@
 package primitives;
 
 public class Material {
+
+    /**
+     * kT = Transparancy coefficient, kR = reflection coefficient
+     *
+     */
+    public double kT;
+    public double kR;
     public double kD;
     public double kS;
     public int nShininess;
@@ -11,12 +18,16 @@ public class Material {
      * @param kD
      * @param kS
      * @param nShininess
+     * @param kT
+     * @param kR
      *
      */
-    public Material(double kD, double kS, int nShininess) {
+    public Material(double kD, double kS, int nShininess, double kT, double kR) {
         this.kD = kD;
         this.kS = kS;
         this.nShininess = nShininess;
+        this.kT = kT;
+        this.kR = kR;
     }
 
     /**
@@ -25,16 +36,20 @@ public class Material {
      * @param kD
      * @param kS
      * @param nShininess
+     * @param kT
+     * @param kR
      *
      */
     public Material() {
         this.kD = 0;
         this.kS = 0;
         this.nShininess = 0;
+        this.kT = 0.0;
+        this.kR = 0.0;
     }
 
     public Material(Material material) {
-        this(material.kD, material.kS, material.nShininess);
+        this(material.kD, material.kS, material.nShininess, material.kT, material.kR);
     }
 
     /**
@@ -69,4 +84,27 @@ public class Material {
         this.nShininess = nShininess;
         return this;
     }
+
+    /**
+     * Method to set Transparancy coefficient and return the object
+     *
+     * @param kT
+     * @return Material
+     */
+    public Material setKT(double kT) {
+        this.kT = kT;
+        return this;
+    }
+
+    /**
+     * Method to set Reflection coefficient and return the object
+     *
+     * @param kR
+     * @return Material
+     */
+    public Material setKR(double kR) {
+        this.kR = kR;
+        return this;
+    }
+
 }

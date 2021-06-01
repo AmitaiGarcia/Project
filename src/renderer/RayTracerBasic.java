@@ -15,9 +15,13 @@ import scene.Scene;
 
 public class RayTracerBasic extends RayTraceBase {
     /**
-     * for the size of moving ray’s heads for shadow rays
+     * DELTA:for the size of moving ray’s heads for shadow rays, MAX/MIN 2 contants
+     * for the recursion top condition of reflaction/transparancy
+     *
      */
     private static final double DELTA = 0.1;
+    private static final int MAX_CALC_COLOR_LEVEL = 10;
+    private static final double MIN_CALC_COLOR_K = 0.001;
 
     public RayTracerBasic(Scene scene) {
         super(scene);
@@ -151,6 +155,19 @@ public class RayTracerBasic extends RayTraceBase {
                 return false;
         }
         return true;
+    }
+
+    public Ray constructRefractedRay(Vector normal, Point3D point, Ray ray) {
+        Vector delta = normal.scale(normal.dotProduct(ray.dir) >= 0 ? DELTA : -DELTA);
+        return new Ray(point.add(delta), ray.getDir());
+    }
+
+    public Ray constructReflectedRay(Vector normal, Point3D point, Ray ray) {
+        Vector v = ray.getDir();
+        double vn = v.dotProduct(normal);
+        Vector reflectionDir = v.subtract(normal.scale(vn * 2));
+        Vector delta = normal.scale(normal.dotProduct(v) >= 0 ? DELTA : -DELTA);
+        return new Ray(point.add(delta), reflectionDir);
     }
 
 }
