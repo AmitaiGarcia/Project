@@ -14,7 +14,7 @@ public interface LightSource {
 
     /**
      * GetIntensity function
-     * 
+     *
      * @param p
      * @return color
      */
@@ -22,10 +22,12 @@ public interface LightSource {
 
     /**
      * GetL function
-     * 
+     *
      * @param p
      * @return Vector
      */
     public Vector getL(Point3D p);
+
+    double getDistance(Point3D point);
 
 }
