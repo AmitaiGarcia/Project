@@ -46,6 +46,7 @@ public class Color {
     }
 
     /**
+     *
      * Copy constructor for Color
      *
      * @param other the source color

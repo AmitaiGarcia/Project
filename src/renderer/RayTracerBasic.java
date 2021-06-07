@@ -55,12 +55,26 @@ public class RayTracerBasic extends RayTraceBase {
 
     }
 
+    /**
+     * @param intersection
+     * @param ray
+     * @param level
+     * @param k
+     * @return Color
+     */
     private Color calcColor(GeoPoint intersection, Ray ray, int level, double k) {
         Color color = intersection.geometry.getEmission().add(calcLocaleffects(intersection, ray));
         return 1 == level ? color : color.add(calcGlobalEffects(intersection, ray.dir, level, k));
 
     }
 
+    /**
+     * @param gp
+     * @param v
+     * @param level
+     * @param k
+     * @return Color
+     */
     private Color calcGlobalEffects(GeoPoint gp, Vector v, int level, double k) {
         Color color = Color.BLACK;
         Vector n = gp.geometry.getNormal(gp.point);
@@ -75,6 +89,13 @@ public class RayTracerBasic extends RayTraceBase {
 
     }
 
+    /**
+     * @param ray
+     * @param level
+     * @param kx
+     * @param kkx
+     * @return Color
+     */
     private Color calcGlobalEffect(Ray ray, int level, double kx, double kkx) {
         GeoPoint gp = findClosestIntersection(ray);
         return (gp == null ? scene.background : calcColor(gp, ray, level - 1, kkx).scale(kx));
@@ -157,6 +178,13 @@ public class RayTracerBasic extends RayTraceBase {
         return lightIntensity.scale(ln * kd);
     }
 
+    /**
+     * @param light
+     * @param l
+     * @param n
+     * @param gpoint
+     * @return boolean
+     */
     private boolean unshaded(LightSource light, Vector l, Vector n, GeoPoint gpoint) {
         Vector lightDirection = l.scale(-1);
         Ray lightRay = new Ray(gpoint.point, lightDirection, n);
@@ -172,10 +200,22 @@ public class RayTracerBasic extends RayTraceBase {
         return true;
     }
 
+    /**
+     * @param point
+     * @param direction
+     * @param normal
+     * @return Ray
+     */
     public Ray constructRefractedRay(Point3D point, Vector direction, Vector normal) {
         return new Ray(point, direction, normal);
     }
 
+    /**
+     * @param point
+     * @param direction
+     * @param normal
+     * @return Ray
+     */
     public Ray constructReflectedRay(Point3D point, Vector direction, Vector normal) {
         double vn = direction.dotProduct(normal);
         if (isZero(vn)) {
