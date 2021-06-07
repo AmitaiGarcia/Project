@@ -14,7 +14,7 @@ import primitives.Point3D;
 public abstract class Geometry implements Intersectable {
 
     protected Color emmission;
-    private Material material;
+    private Material material = new Material();
 
     protected Geometry() {
         emmission = new Color(java.awt.Color.BLACK);
@@ -22,11 +22,12 @@ public abstract class Geometry implements Intersectable {
 
     protected Geometry(Color emmission) {
         emmission = new Color(emmission);
+
     }
 
     /**
      * get method for material
-     * 
+     *
      * @return Material
      */
     public Material getMaterial() {
@@ -35,7 +36,7 @@ public abstract class Geometry implements Intersectable {
 
     /**
      * set method for material that returns the object
-     * 
+     *
      * @param material
      * @return Geometry
      */
@@ -46,7 +47,7 @@ public abstract class Geometry implements Intersectable {
 
     /**
      * get method for emission
-     * 
+     *
      * @return Color
      */
     public Color getEmission() {
@@ -55,7 +56,7 @@ public abstract class Geometry implements Intersectable {
 
     /**
      * set method for emission and return the object
-     * 
+     *
      * @param emmission
      * @return Geometry
      */
@@ -66,7 +67,7 @@ public abstract class Geometry implements Intersectable {
 
     /**
      * getnormal method
-     * 
+     *
      * @param gp
      * @return Vector
      */

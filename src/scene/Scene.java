@@ -58,7 +58,7 @@ public class Scene {
 
     /**
      * this method sets the geometries parameter and returns the object
-     * 
+     *
      * @param geometries
      * @return Scene
      */

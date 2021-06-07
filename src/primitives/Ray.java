@@ -8,10 +8,29 @@ public class Ray {
     public Point3D p0;
     public Vector dir;
     Vector norm;
+    private static final double DELTA = 0.1;
 
     public Ray(Point3D p0, Vector dir) {
         this.p0 = p0;
         this.dir = dir.normalized();
+    }
+
+    /**
+     * constructor getting a point and normal (of a geometry) and moves the point in
+     * the normal's direction with delta length, and that point is the source of the
+     * built ray, and getting the direction of the ray (of the shadow ray,
+     * reflection or refraction)
+     *
+     * @param point     base place
+     * @param normal    direction to move the source point to
+     * @param direction of the ray to build
+     */
+    public Ray(Point3D head, Vector direction, Vector normal) {
+
+        Vector delta = normal.scale(normal.dotProduct(direction) >= 0 ? DELTA : -DELTA);
+        this.p0 = head.add(delta);
+        this.dir = direction.normalized();
+
     }
 
     /**
