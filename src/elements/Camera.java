@@ -14,6 +14,11 @@ import static primitives.Util.isZero;
  * @author Mengistu Kerew
  */
 public class Camera {
+    /**
+     * P0 = camera position vUp = Upwards vector vTo = Towards vector vRight = Right
+     * vector width = Width of view plane heigt = Height of view plane distance =
+     * distance between camera and view plane
+     */
     Point3D p0;
     Vector vUp;
     Vector vTo;
@@ -71,7 +76,7 @@ public class Camera {
 
     /**
      * This method cosntructs a ray through certain pixels and return the ray
-     * 
+     *
      * @param nX
      * @param nY
      * @param j

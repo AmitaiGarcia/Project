@@ -12,7 +12,10 @@ import primitives.Vector;
  * @author Mengistu Kerew
  */
 public class PointLight extends Light implements LightSource {
-
+    /**
+     * position = position of the lightsource (pointlight)
+     *
+     */
     private Point3D position;
     private double kC;
     private double kL;
@@ -106,6 +109,12 @@ public class PointLight extends Light implements LightSource {
         return p.subtract(position).normalize();
     }
 
+    /**
+     * GetDistance function for the pointlight to a certain point
+     *
+     * @param point
+     * @return double
+     */
     @Override
     public double getDistance(Point3D point) {
         return position.distance(point);

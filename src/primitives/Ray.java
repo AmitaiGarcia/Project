@@ -5,6 +5,11 @@ import java.util.Objects;
 import geometries.Intersectable.GeoPoint;
 
 public class Ray {
+    /**
+     * p0 = start of the ray, dis = direction vector for the ray, norm = normal
+     * vector to the raytrace
+     *
+     */
     public Point3D p0;
     public Vector dir;
     Vector norm;
@@ -34,6 +39,8 @@ public class Ray {
     }
 
     /**
+     * checks if on ray is equal to the other
+     *
      * @param o
      * @return boolean
      */
@@ -65,6 +72,8 @@ public class Ray {
     }
 
     /**
+     * return head of the ray
+     *
      * @return Point3D
      */
     public Point3D getP0() {
@@ -72,6 +81,8 @@ public class Ray {
     }
 
     /**
+     * returns the direction vector of the ray
+     *
      * @return Vector
      */
     public Vector getDir() {
@@ -79,6 +90,8 @@ public class Ray {
     }
 
     /**
+     * return the normal of the ray
+     *
      * @return Vector
      */
     public Vector getNorm() {
@@ -86,6 +99,8 @@ public class Ray {
     }
 
     /**
+     * This method takes p0 adds the direction ray scaled by t
+     *
      * @param t
      * @return Point3D
      */
@@ -112,6 +127,13 @@ public class Ray {
         return closest;
     }
 
+    /**
+     * This method will find the closest GeoPoint to the ray's head (p0) from a list
+     * of points
+     *
+     * @param list
+     * @return Point3D
+     */
     public GeoPoint findClosestGeoPoint(List<GeoPoint> list) {
 
         if (list == null || list.isEmpty())

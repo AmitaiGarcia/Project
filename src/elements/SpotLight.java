@@ -12,6 +12,9 @@ import static primitives.Util.*;
  * @author Mengistu Kerew
  */
 public class SpotLight extends PointLight {
+    /**
+     * direction = direction vector of the spotlight
+     */
     private Vector direction;
 
     /**
@@ -47,7 +50,7 @@ public class SpotLight extends PointLight {
 
     /**
      * Get intensity method for the SpotLight class
-     * 
+     *
      * @param p
      * @return Color
      */

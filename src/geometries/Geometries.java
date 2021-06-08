@@ -7,6 +7,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Geometries implements Intersectable {
+    /**
+     * geometries = list of geometries
+     */
 
     List<Intersectable> geometries;
 
@@ -37,7 +40,7 @@ public class Geometries implements Intersectable {
 
     /**
      * This Method finds all the Intersections using a Geopoint
-     * 
+     *
      * @param ray
      * @return List<GeoPoint>
      */

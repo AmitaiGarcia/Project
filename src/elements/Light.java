@@ -9,9 +9,14 @@ import primitives.Color;
  * @author Mengistu Kerew
  */
 public abstract class Light {
-    /** Color of the light */
+    /** color = Color of the light */
     Color intensity;
 
+    /**
+     * constructor for the intensity of the light (color)
+     * 
+     * @param intensity
+     */
     protected Light(Color intensity) {
         this.intensity = intensity;
     }

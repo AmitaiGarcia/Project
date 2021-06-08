@@ -17,7 +17,8 @@ public class RayTracerBasic extends RayTraceBase {
     /**
      * DELTA:for the size of moving ray’s heads for shadow rays, MAX/MIN 2 contants
      * for the recursion top condition of reflaction/transparancy
-     *
+     * MAX_CALC_COLOR_LEVEL:the maximum times to enter the recursion of calcColor
+     * MIN_CALC_COLOR_K:the bound of the opacity to enter the recursion of calcColor
      */
     private static final double INITIAL_K = 1.0;
     private static final int MAX_CALC_COLOR_LEVEL = 10;
@@ -42,11 +43,13 @@ public class RayTracerBasic extends RayTraceBase {
     }
 
     /**
+     * calculate the color in a specific point according to model phong, calculated
+     * by the color of the elements and geometries of the scene
      *
-     *
-     * @param point
-     * @param ray
-     * @return Color
+     * @param ray   the ray of camera to calculate the color of the point it
+     *              intersects
+     * @param Point the p air of geometry and point to calculate the color to
+     * @return the color of the pixel according to model phong
      */
 
     private Color calcColor(GeoPoint point, Ray ray) {
@@ -56,6 +59,8 @@ public class RayTracerBasic extends RayTraceBase {
     }
 
     /**
+     * calculate the color in a specific point according to model phong
+     *
      * @param intersection
      * @param ray
      * @param level
@@ -182,6 +187,9 @@ public class RayTracerBasic extends RayTraceBase {
     }
 
     /**
+     * before was the unshaded method. transparency method calculates the
+     * transparency
+     *
      * @param light
      * @param l
      * @param n
@@ -208,6 +216,8 @@ public class RayTracerBasic extends RayTraceBase {
     }
 
     /**
+     * this method constructs the refracted rays
+     * 
      * @param point
      * @param direction
      * @param normal
@@ -218,6 +228,8 @@ public class RayTracerBasic extends RayTraceBase {
     }
 
     /**
+     * this method constructs the reflections rays
+     * 
      * @param point
      * @param direction
      * @param normal

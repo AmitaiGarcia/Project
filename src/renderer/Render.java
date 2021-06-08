@@ -46,7 +46,7 @@ public class Render {
     }
 
     /**
-     * This method (for now) checks if all parameters are assigned (not null)
+     * This method checks if all parameters are assigned (not null)
      */
     public void renderImage() {
 

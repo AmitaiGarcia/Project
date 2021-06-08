@@ -8,9 +8,19 @@ import primitives.Ray;
 import primitives.Vector;
 
 public class Tube extends Geometry {
+    /**
+     * axisRay = ray that shows the axis of the tube. radius = radius of the tube
+     * from the axis
+     */
     private Ray axisRay;
     private double radius;
 
+    /**
+     * constructor for the Tube
+     *
+     * @param axisRay
+     * @param radius
+     */
     public Tube(Ray axisRay, double radius) {
         this.axisRay = axisRay;
         this.radius = radius;
@@ -61,7 +71,7 @@ public class Tube extends Geometry {
 
     @Override
     public List<GeoPoint> findGeoIntersections(Ray ray) {
-        // TODO Auto-generated method stub
+        // TODO: implement
         return null;
     }
 

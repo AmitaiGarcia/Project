@@ -125,4 +125,10 @@ public class Point3D {
         return this.z.coord;
     }
 
+    /**
+     *
+     * @param length
+     * @return target point
+     */
+
 }

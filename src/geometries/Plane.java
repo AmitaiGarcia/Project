@@ -17,6 +17,9 @@ import static primitives.Util.isZero;
  */
 
 public class Plane extends Geometry {
+    /**
+     * p0 = point on the plane normal = normal vector for the plane
+     */
     private Point3D p0;
     private Vector normal;
 

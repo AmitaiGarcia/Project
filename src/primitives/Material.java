@@ -3,7 +3,8 @@ package primitives;
 public class Material {
 
     /**
-     * kT = Transparancy coefficient, kR = reflection coefficient
+     * kT = Transparancy coefficient, kR = reflection coefficient kD = diffus
+     * coefficient kS = reflection coefficient nShininess = the shininess
      *
      */
     public double kT;
@@ -46,10 +47,6 @@ public class Material {
         this.nShininess = 0;
         this.kT = 0.0;
         this.kR = 0.0;
-    }
-
-    public Material(Material material) {
-        this(material.kD, material.kS, material.nShininess, material.kT, material.kR);
     }
 
     /**

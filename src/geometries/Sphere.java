@@ -17,9 +17,18 @@ import primitives.Vector;
  */
 
 public class Sphere extends Geometry {
+    /**
+     * center = center of the sphere radius = the radius of the sphere
+     */
     private Point3D center;
     private double radius;
 
+    /**
+     * constructor for the sphere
+     * 
+     * @param center
+     * @param radius
+     */
     public Sphere(Point3D center, double radius) {
         this.center = center;
         this.radius = radius;

@@ -17,20 +17,31 @@ import static primitives.Util.isZero;
  * @author Mengistu Kerew
  */
 public class Triangle extends Polygon {
+    /**
+     * list of Point3D using an ArrayList
+     *
+     */
 
-    private List<Point3D> _vertices = new ArrayList<>();
+    private List<Point3D> verticespol = new ArrayList<>();
 
+    /**
+     * constructor for the triangle
+     * 
+     * @param p1
+     * @param p2
+     * @param p3
+     */
     public Triangle(Point3D p1, Point3D p2, Point3D p3) {
         super(p1, p2, p3);
-        _vertices.add(new Point3D(p1.getX(), p1.getY(), p1.getZ()));
-        _vertices.add(new Point3D(p2.getX(), p2.getY(), p2.getZ()));
-        _vertices.add(new Point3D(p3.getX(), p3.getY(), p3.getZ()));
+        verticespol.add(new Point3D(p1.getX(), p1.getY(), p1.getZ()));
+        verticespol.add(new Point3D(p2.getX(), p2.getY(), p2.getZ()));
+        verticespol.add(new Point3D(p3.getX(), p3.getY(), p3.getZ()));
     }
 
     /**
      *
      * This method finds all intersection points between a Ray and the Triangle
-     * 
+     *
      * @param ray
      * @return List<GeoPoint>
      */
@@ -42,9 +53,9 @@ public class Triangle extends Polygon {
         Point3D p0 = ray.getP0();
         Vector v = ray.getDir();
 
-        Vector v1 = _vertices.get(0).subtract(p0);
-        Vector v2 = _vertices.get(1).subtract(p0);
-        Vector v3 = _vertices.get(2).subtract(p0);
+        Vector v1 = verticespol.get(0).subtract(p0);
+        Vector v2 = verticespol.get(1).subtract(p0);
+        Vector v3 = verticespol.get(2).subtract(p0);
 
         double N1 = v.dotProduct(v1.crossProduct(v2));
         if (isZero(N1))

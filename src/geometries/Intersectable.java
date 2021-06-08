@@ -27,17 +27,42 @@ public interface Intersectable {
         return geoList == null ? null : geoList.stream().map(gp -> gp.point).collect(Collectors.toList());
     }
 
+    /**
+     * This method created a list of all the geointersections betwen a ray and a
+     * geometry
+     *
+     * @param ray
+     * @return a list of GeoPoints
+     */
     public List<GeoPoint> findGeoIntersections(Ray ray);
 
+    /**
+     * Geopoint class
+     */
     public static class GeoPoint {
+        /**
+         * geometry = the geometry used point = the point of the GeoPoint
+         */
         public Geometry geometry;
         public Point3D point;
 
+        /**
+         * constructor for the GeoPoint
+         *
+         * @param geometry
+         * @param point
+         */
         public GeoPoint(Geometry geometry, Point3D point) {
             this.geometry = geometry;
             this.point = point;
         }
 
+        /**
+         * this method check if the GeoPoint is equal to the other GeoPoint
+         *
+         * @param obj
+         * @return boolean
+         */
         @Override
         public boolean equals(Object obj) {
             if (this == obj)
@@ -60,6 +85,10 @@ public interface Intersectable {
             return result;
         }
 
+        /**
+         *
+         * @return null
+         */
         public Point3D getPoint() {
             return null;
         }

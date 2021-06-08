@@ -3,9 +3,16 @@ package primitives;
 import java.util.Objects;
 
 public class Vector {
+    /**
+     * head = is the head of the vector
+     */
     Point3D head;
 
-    // constructor
+    /**
+     * constructor using only the head of the ray
+     *
+     * @param head
+     */
     public Vector(Point3D head) {
         if (head.equals(Point3D.ZERO)) {
             throw new IllegalArgumentException("Cannot use the zero vector");
@@ -13,10 +20,22 @@ public class Vector {
         this.head = head;
     }
 
+    /**
+     * constructor using the x y z for the head point
+     *
+     * @param x
+     * @param y
+     * @param z
+     */
     public Vector(double x, double y, double z) {
         this(new Point3D(x, y, z));
     }
 
+    /**
+     * copy constructor
+     *
+     * @param v
+     */
     public Vector(Vector v) {
         this.head = v.head;
     }
@@ -31,14 +50,11 @@ public class Vector {
     }
 
     /**
-     * @param gv.head.x.coord
-     * @param gv.head.y.coord
-     * @param gv.head.x.coord
-     * @param gv.head.y.coord
-     * @param scaler
+     * This Method can subtract 1 vector from another
+     *
+     * @param gv
      * @return Vector
      */
-    // add and subtract vectors
 
     public Vector subtract(Vector gv) {// gv = given vector
 
@@ -47,9 +63,9 @@ public class Vector {
     }
 
     /**
-     * @param gv.head.x.coord
-     * @param gv.head.y.coord
-     * @param scaler
+     * This method adds 1 vector to another
+     *
+     * @param gv
      * @return Vector
      */
     public Vector add(Vector gv) {// gv = given vector
@@ -58,10 +74,11 @@ public class Vector {
     }
 
     /**
+     * this method scales the vector by a scaler
+     *
      * @param scaler
      * @return Vector
      */
-    // scaler, dotproduct and crossproduct
 
     public Vector scale(double scaler) {
 
@@ -69,6 +86,8 @@ public class Vector {
     }
 
     /**
+     * this method calculates the dotProduct between 2 vectors
+     *
      * @param gv
      * @return double
      */
@@ -80,6 +99,8 @@ public class Vector {
     }
 
     /**
+     * This method calculates the crossproduct between 2 vectors
+     *
      * @param gv
      * @return Vector
      */
@@ -91,15 +112,18 @@ public class Vector {
     }
 
     /**
+     * This method calculates the length squared of the vector
+     *
      * @return double
      */
-    // lengthSquared, Lenght
 
     public double lengthSquared() {
         return (head.x.coord * head.x.coord + head.y.coord * head.y.coord + head.z.coord * head.z.coord);
     }
 
     /**
+     * This method calculates the length without squaring the result
+     *
      * @return double
      */
     public double length() {
@@ -108,6 +132,8 @@ public class Vector {
     }
 
     /**
+     * this method normalizes the vector but returns the vector unchanged
+     *
      * @return Vector
      */
     public Vector normalize() {
@@ -117,6 +143,8 @@ public class Vector {
     }
 
     /**
+     * this method normalized the vector and returnt he normalized vector
+     *
      * @return Vector
      */
     public Vector normalized() {

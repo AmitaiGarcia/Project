@@ -11,10 +11,13 @@ import scene.Scene;
  * @author Mengistu Kerew
  */
 public abstract class RayTraceBase {
+    /**
+     * scene = the scene without any geometries in it
+     */
     protected Scene scene;
 
     /**
-     * constructor
+     * constructor that sets the scene
      *
      * @param scene
      */
@@ -23,6 +26,8 @@ public abstract class RayTraceBase {
     }
 
     /**
+     * abstract method for traceRay
+     *
      * @param rays
      * @return Color
      */

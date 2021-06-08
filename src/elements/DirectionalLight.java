@@ -13,6 +13,9 @@ import primitives.Vector;
  * @author Mengistu Kerew
  */
 public class DirectionalLight extends Light implements LightSource {
+    /**
+     * direction = direction vector for the light
+     */
     private Vector direction;
 
     /**
@@ -48,6 +51,12 @@ public class DirectionalLight extends Light implements LightSource {
         return direction;
     }
 
+    /**
+     * GetDistance method for the DirectionalLight class
+     *
+     * @param p
+     * @return Vector
+     */
     @Override
     public double getDistance(Point3D point) {
         return Double.POSITIVE_INFINITY;

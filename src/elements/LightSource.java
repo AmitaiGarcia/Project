@@ -28,6 +28,12 @@ public interface LightSource {
      */
     public Vector getL(Point3D p);
 
+    /**
+     * GetDistance function
+     *
+     * @param point
+     * @return double
+     */
     double getDistance(Point3D point);
 
 }

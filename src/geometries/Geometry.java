@@ -12,14 +12,26 @@ import primitives.Point3D;
  * @author Mengistu Kerew
  */
 public abstract class Geometry implements Intersectable {
+    /**
+     * emmision = the color of the emission light in material = the material the
+     * geometry is made from
+     */
 
     protected Color emmission;
     private Material material = new Material();
 
+    /**
+     * constructor which sets the emission light to BLACK
+     */
     protected Geometry() {
         emmission = new Color(java.awt.Color.BLACK);
     }
 
+    /**
+     * constructor which sets the emission light to the given emission color
+     * 
+     * @param emmission
+     */
     protected Geometry(Color emmission) {
         emmission = new Color(emmission);
 

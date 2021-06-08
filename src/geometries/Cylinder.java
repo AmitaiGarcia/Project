@@ -13,8 +13,18 @@ import primitives.Vector;
  */
 
 public class Cylinder extends Tube {
+    /**
+     * height = the height of the cylinder
+     */
     private double height;
 
+    /**
+     * constructor that uses the super constructor of tube to set the cylinder class
+     * 
+     * @param axisRay
+     * @param radius
+     * @param height
+     */
     public Cylinder(Ray axisRay, double radius, double height) {
         super(axisRay, radius);
         this.height = height;
@@ -22,7 +32,7 @@ public class Cylinder extends Tube {
 
     /**
      * this method return the height of the cylinder
-     * 
+     *
      * @return double
      */
     public double getHeight() {
@@ -41,7 +51,7 @@ public class Cylinder extends Tube {
 
     /**
      * This method calculates and returns the normal vector (not implemented)
-     * 
+     *
      * @param gp
      * @return Vector
      */

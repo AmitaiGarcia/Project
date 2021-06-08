@@ -162,7 +162,7 @@ public class LightsTests {
         }
 
         /**
-         * Produce a picture of a two triangles lighted by a spot light and pointlight
+         * Produce a picture of a two triangles lighted by a spot light and 2 pointlight
          */
         @Test
         public void trianglesmultlight() {
@@ -172,6 +172,8 @@ public class LightsTests {
                                 new Vector(-2, -2, -1)) //
                                                 .setKL(0.0001).setKQ(0.000005));
                 scene2.lights.add(new PointLight(new Color(500, 250, 250), new Point3D(-10, 10, -130)) //
+                                .setKL(0.0005).setKQ(0.0005));//
+                scene2.lights.add(new PointLight(new Color(500, 250, 250), new Point3D(60, 60, -130)) //
                                 .setKL(0.0005).setKQ(0.0005));
 
                 ImageWriter imageWriter = new ImageWriter("trianglemultlight", 500, 500);
