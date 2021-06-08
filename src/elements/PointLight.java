@@ -13,7 +13,8 @@ import primitives.Vector;
  */
 public class PointLight extends Light implements LightSource {
     /**
-     * position = position of the lightsource (pointlight)
+     * position = position of the lightsource (pointlight) KC,KL,KQ are the
+     * coeficients of the attenuation of the light source
      *
      */
     private Point3D position;
@@ -103,10 +104,12 @@ public class PointLight extends Light implements LightSource {
      */
     @Override
     public Vector getL(Point3D p) {
+
         if (p.equals(position)) {
             return null;
         }
         return p.subtract(position).normalize();
+
     }
 
     /**

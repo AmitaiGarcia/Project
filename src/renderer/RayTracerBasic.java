@@ -1,10 +1,12 @@
 package renderer;
 
+import java.util.ArrayList;
 import java.util.List;
 import static primitives.Util.*;
 
 import elements.LightSource;
 import geometries.Intersectable.GeoPoint;
+import java.util.Random;
 
 import primitives.Color;
 import primitives.Material;
@@ -23,6 +25,9 @@ public class RayTracerBasic extends RayTraceBase {
     private static final double INITIAL_K = 1.0;
     private static final int MAX_CALC_COLOR_LEVEL = 10;
     private static final double MIN_CALC_COLOR_K = 0.001;
+    public static int NUM_OF_RAYS = 300;
+    public static double RADIUS = 0.01;
+    private static final Random RAND = new Random();
 
     public RayTracerBasic(Scene scene) {
         super(scene);
@@ -127,6 +132,7 @@ public class RayTracerBasic extends RayTraceBase {
         double ks = material.kS;
         Color color = Color.BLACK;
         for (LightSource light : scene.lights) {
+
             Vector l = light.getL(point.point);
             double nl = alignZero(n.dotProduct(l));
             if (nl * nv > 0) {
@@ -139,6 +145,7 @@ public class RayTracerBasic extends RayTraceBase {
                 }
 
             }
+
         }
         return color;
     }
@@ -196,17 +203,19 @@ public class RayTracerBasic extends RayTraceBase {
      * @param gpoint
      * @return boolean
      */
-    private double transparency(LightSource light, Vector l, Vector n, GeoPoint gpoint) {
-        Vector lightDirection = l.scale(-1);
-        Ray lightRay = new Ray(gpoint.point, lightDirection, n);
+    private double transparency(Ray ray, GeoPoint geopoint, LightSource light) {
+        // calculate the distance between the light source and the point
+        double lightDistance = light.getDistance(geopoint.point);
 
-        List<GeoPoint> intersections = scene.geometries.findGeoIntersections(lightRay);
+        // check if there is geometries between the light and the point
+        var intersections = scene.geometries.findGeoIntersections(ray);
         if (intersections == null)
             return 1.0;
-        double lightDistance = light.getDistance(gpoint.point);
+
+        // if there is, calculate the amount of transparency of all of them
         double ktr = 1.0;
         for (GeoPoint gp : intersections) {
-            if (alignZero(gp.point.distance(gpoint.point) - lightDistance) <= 0) {
+            if (alignZero(gp.point.distance(geopoint.point) - lightDistance) <= 0) {
                 ktr *= gp.geometry.getMaterial().kT;
                 if (ktr < MIN_CALC_COLOR_K)
                     return 0.0;
@@ -217,7 +226,7 @@ public class RayTracerBasic extends RayTraceBase {
 
     /**
      * this method constructs the refracted rays
-     * 
+     *
      * @param point
      * @param direction
      * @param normal
@@ -229,7 +238,7 @@ public class RayTracerBasic extends RayTraceBase {
 
     /**
      * this method constructs the reflections rays
-     * 
+     *
      * @param point
      * @param direction
      * @param normal
@@ -284,6 +293,59 @@ public class RayTracerBasic extends RayTraceBase {
         if (intersections == null)
             return null;
         return getClosestPoint(ray.getP0(), intersections);
+    }
+
+    /**
+     * Calculate the new vector by a random number between radius and minus radius
+     *
+     * @param vector
+     * @param radius
+     * @return new vector
+     */
+    private static Vector randomVector(Vector vector, double radius) {
+        double x = vector.getHead().getX() + RAND.nextDouble() * 2 * radius - radius;
+        double y = vector.getHead().getY() + RAND.nextDouble() * 2 * radius - radius;
+        double z = vector.getHead().getZ() + RAND.nextDouble() * 2 * radius - radius;
+        return new Vector(x, y, z);
+    }
+
+    /**
+     * Creates a new ray by a starting point p0, and also receives a direction
+     * vector and radius and calculates the random vector according to this
+     *
+     * @param ray
+     * @return list of rays
+     */
+
+    public static List<Ray> splitRay(Ray ray) {
+        List<Ray> result = new ArrayList<>();
+
+        for (int i = 0; i < NUM_OF_RAYS; i++) {
+            result.add(new Ray(ray.getP0(), randomVector(ray.getDir(), RADIUS)));
+        }
+        return result;
+    }
+
+    /**
+     * Calculates the main ray and sends it to splitray function that creates a list
+     * of rays and summarizes the transparency of each ray and then returns their
+     * average to divide by the size of the list.
+     *
+     * @param light
+     * @param l
+     * @param n
+     * @param geopoint
+     * @return rays transparency average to divide by the size of the list.
+     */
+    private double transparency(LightSource light, Vector l, Vector n, GeoPoint geopoint) {
+        Vector lightDirection = l.scale(-1);
+        Ray lightRay = new Ray(geopoint.point, lightDirection, n);
+        List<Ray> beam = splitRay(lightRay);
+        double transparency = 0;
+        for (Ray ray : beam) {
+            transparency += transparency(ray, geopoint, light);
+        }
+        return alignZero(transparency / beam.size());
     }
 
 }
