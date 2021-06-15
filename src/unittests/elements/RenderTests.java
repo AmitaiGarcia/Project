@@ -46,7 +46,7 @@ public class RenderTests {
                 Render render = new Render() //
                                 .setImageWriter(imageWriter) //
                                 .setCamera(camera) //
-                                .setRayTrace(new RayTracerBasic(scene));
+                                .setRayTrace(new RayTracerBasic(scene, 1));
 
                 render.renderImage();
                 render.printGrid(100, new Color(java.awt.Color.YELLOW));
@@ -86,7 +86,7 @@ public class RenderTests {
                 Render render = new Render() //
                                 .setImageWriter(imageWriter) //
                                 .setCamera(camera) //
-                                .setRayTrace(new RayTracerBasic(scene));
+                                .setRayTrace(new RayTracerBasic(scene, 1));
 
                 render.renderImage();
                 render.printGrid(100, new Color(java.awt.Color.WHITE));

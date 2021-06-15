@@ -17,6 +17,7 @@ public class DirectionalLight extends Light implements LightSource {
      * direction = direction vector for the light
      */
     private Vector direction;
+    private double radius = 0;
 
     /**
      * constructor for DirectionalLights
@@ -61,4 +62,17 @@ public class DirectionalLight extends Light implements LightSource {
     public double getDistance(Point3D point) {
         return Double.POSITIVE_INFINITY;
     }
+
+    @Override
+    public double getRadius() {
+        return radius;
+    }
+
+    @Override
+    public DirectionalLight setRadius(double radius) {
+        this.radius = radius;
+        return this;
+
+    }
+
 }

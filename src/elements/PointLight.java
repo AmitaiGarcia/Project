@@ -21,6 +21,7 @@ public class PointLight extends Light implements LightSource {
     private double kC;
     private double kL;
     private double kQ;
+    private double radius;
 
     /**
      * Constructor for PointLight
@@ -121,6 +122,18 @@ public class PointLight extends Light implements LightSource {
     @Override
     public double getDistance(Point3D point) {
         return position.distance(point);
+    }
+
+    @Override
+    public double getRadius() {
+        return radius;
+    }
+
+    @Override
+    public PointLight setRadius(double radius) {
+        this.radius = radius;
+        return this;
+
     }
 
 }

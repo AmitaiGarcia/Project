@@ -25,12 +25,12 @@ public class RayTracerBasic extends RayTraceBase {
     private static final double INITIAL_K = 1.0;
     private static final int MAX_CALC_COLOR_LEVEL = 10;
     private static final double MIN_CALC_COLOR_K = 0.001;
-    public static int NUM_OF_RAYS = 300;
-    public static double RADIUS = 0.01;
+    private final int numrays;
     private static final Random RAND = new Random();
 
-    public RayTracerBasic(Scene scene) {
+    public RayTracerBasic(Scene scene, int num) {
         super(scene);
+        this.numrays = num;
     }
 
     /**
@@ -302,11 +302,35 @@ public class RayTracerBasic extends RayTraceBase {
      * @param radius
      * @return new vector
      */
-    private static Vector randomVector(Vector vector, double radius) {
-        double x = vector.getHead().getX() + RAND.nextDouble() * 2 * radius - radius;
-        double y = vector.getHead().getY() + RAND.nextDouble() * 2 * radius - radius;
-        double z = vector.getHead().getZ() + RAND.nextDouble() * 2 * radius - radius;
-        return new Vector(x, y, z);
+    private static Vector randomVector(Ray ray, LightSource light) {
+        /*
+         * double x = v.getHead().getX() + RAND.nextDouble() * 2 * radius - radius;
+         * double y = v.getHead().getY() + RAND.nextDouble() * 2 * radius - radius;
+         * double z = v.getHead().getZ() + RAND.nextDouble() * 2 * radius - radius;
+         * return new Vector(x, y, z);
+         */
+
+        double x = RAND.nextDouble() * 2 * light.getRadius() - light.getRadius();
+        double y = RAND.nextDouble() * 2 * light.getRadius() - light.getRadius();
+        Vector X;
+        try {
+            X = ray.dir.crossProduct(new Vector(0, 0, 1));
+        } catch (IllegalArgumentException __) {
+            X = ray.dir.crossProduct(new Vector(1, 0, 0));
+        }
+
+        Vector Y = ray.dir.crossProduct(X);
+
+        double t = light.getDistance(ray.getP0());
+        if (t == Double.POSITIVE_INFINITY) {
+            t = 1000000;
+        }
+        Point3D Pc = ray.getPoint(t);
+        Vector Xx = X.scale(x);
+        Vector Yy = Y.scale(y);
+        Point3D Pi = Pc.add(Xx).add(Yy);
+        return Pi.subtract(ray.getP0());
+
     }
 
     /**
@@ -317,11 +341,11 @@ public class RayTracerBasic extends RayTraceBase {
      * @return list of rays
      */
 
-    public static List<Ray> splitRay(Ray ray) {
+    public List<Ray> splitRay(Ray ray, LightSource light) {
         List<Ray> result = new ArrayList<>();
-
-        for (int i = 0; i < NUM_OF_RAYS; i++) {
-            result.add(new Ray(ray.getP0(), randomVector(ray.getDir(), RADIUS)));
+        result.add(ray);
+        for (int i = 0; i < numrays; i++) {
+            result.add(new Ray(ray.getP0(), (randomVector(ray, light))));
         }
         return result;
     }
@@ -340,7 +364,7 @@ public class RayTracerBasic extends RayTraceBase {
     private double transparency(LightSource light, Vector l, Vector n, GeoPoint geopoint) {
         Vector lightDirection = l.scale(-1);
         Ray lightRay = new Ray(geopoint.point, lightDirection, n);
-        List<Ray> beam = splitRay(lightRay);
+        List<Ray> beam = splitRay(lightRay, light);
         double transparency = 0;
         for (Ray ray : beam) {
             transparency += transparency(ray, geopoint, light);
