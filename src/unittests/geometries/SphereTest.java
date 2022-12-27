@@ -13,7 +13,7 @@ import primitives.Vector;
 
 public class SphereTest {
 
-        Sphere sphere = new Sphere(new Point3D(0, 0, 0), 1);
+        Sphere sphere = new Sphere(new Point3D(1, 0, 0), 1);
 
         @Test
         public void testGetNormal() {
@@ -93,11 +93,11 @@ public class SphereTest {
                                 sphere1.findIntersections(new Ray(new Point3D(1, 0.5, 0), new Vector(0, 0.5, 0))));
 
                 // TC16: Ray starts at the center (1 points)
-                Point3D p9 = new Point3D(1, 1, 0);
+                Point3D p9 = new Point3D(2, 0, 0);
                 assertEquals("TC16: Wrong number of points", 1,
-                                (sphere1.findIntersections(new Ray(new Point3D(1, 0, 0), new Vector(0, 1, 0)))).size());
+                                (sphere1.findIntersections(new Ray(new Point3D(1, 0, 0), new Vector(1, 0, 0)))).size());
                 assertEquals("TC16: Failed test", List.of(p9),
-                                sphere1.findIntersections(new Ray(new Point3D(1, 0, 0), new Vector(0, 1, 0))));
+                                sphere1.findIntersections(new Ray(new Point3D(1, 0, 0), new Vector(1, 0, 0))));
 
                 // TC17: Ray starts at sphere and goes outside (0 points)
                 assertNull("TC17: Failed test",

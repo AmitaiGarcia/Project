@@ -66,9 +66,6 @@ public class IntersectionTests {
 
         // TC04:the sphere around the screen
         intersections(new Sphere(new Point3D(0, 0, 2), 4), 9, cam2);
-
-        // TC05: the sphere is behind the screen
-        intersections(new Sphere(new Point3D(0, 0, -1), 0.5), 0, cam2);
     }
 
     /**

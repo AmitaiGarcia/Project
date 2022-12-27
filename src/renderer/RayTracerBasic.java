@@ -303,12 +303,6 @@ public class RayTracerBasic extends RayTraceBase {
      * @return new vector
      */
     private static Vector randomVector(Ray ray, LightSource light) {
-        /*
-         * double x = v.getHead().getX() + RAND.nextDouble() * 2 * radius - radius;
-         * double y = v.getHead().getY() + RAND.nextDouble() * 2 * radius - radius;
-         * double z = v.getHead().getZ() + RAND.nextDouble() * 2 * radius - radius;
-         * return new Vector(x, y, z);
-         */
 
         double x = RAND.nextDouble() * 2 * light.getRadius() - light.getRadius();
         double y = RAND.nextDouble() * 2 * light.getRadius() - light.getRadius();
@@ -326,8 +320,8 @@ public class RayTracerBasic extends RayTraceBase {
             t = 1000000;
         }
         Point3D Pc = ray.getPoint(t);
-        Vector Xx = X.scale(x);
-        Vector Yy = Y.scale(y);
+        Vector Xx = X.scale(x + 1);
+        Vector Yy = Y.scale(y + 1);
         Point3D Pi = Pc.add(Xx).add(Yy);
         return Pi.subtract(ray.getP0());
 

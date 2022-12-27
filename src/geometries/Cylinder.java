@@ -3,6 +3,7 @@ package geometries;
 import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
+import static primitives.Util.*;
 
 /**
  * Cylinder class represents 3-dimensional cylinder in 3D Cartesian coordinate
@@ -20,7 +21,7 @@ public class Cylinder extends Tube {
 
     /**
      * constructor that uses the super constructor of tube to set the cylinder class
-     * 
+     *
      * @param axisRay
      * @param radius
      * @param height
@@ -50,7 +51,7 @@ public class Cylinder extends Tube {
     }
 
     /**
-     * This method calculates and returns the normal vector (not implemented)
+     * This method calculates and returns the normal vector
      *
      * @param gp
      * @return Vector
@@ -58,7 +59,18 @@ public class Cylinder extends Tube {
     @Override
     public Vector getNormal(Point3D gp) {
 
-        return null;
-    }
+        Point3D p0 = getAxisRay().getP0();
+        Vector opposite = getAxisRay().getDir();
 
+        if (p0.equals(gp))
+            return opposite;
+
+        Vector hypotenuse = gp.subtract(p0);
+        double t = hypotenuse.dotProduct(opposite);
+        if (isZero(t - height) || isZero(t)) // point is on the bases of the cylinder
+            return opposite; // axisRay vector
+
+        Point3D center = p0.add(opposite.scale(t));
+        return gp.subtract(center);
+    }
 }

@@ -1,6 +1,5 @@
 package geometries;
 
-import java.util.ArrayList;
 import java.util.List;
 import static primitives.Util.*;
 
@@ -25,7 +24,7 @@ public class Sphere extends Geometry {
 
     /**
      * constructor for the sphere
-     * 
+     *
      * @param center
      * @param radius
      */
@@ -82,31 +81,28 @@ public class Sphere extends Geometry {
 
     @Override
     public List<GeoPoint> findGeoIntersections(Ray ray) {
-        ArrayList<GeoPoint> intersectionsPoints = null;
-        Vector u = new Vector(center.subtract(ray.getP0())); // u = O - p0
-        double tm = ray.getDir().dotProduct(u); //// t_m = v * u
-        double d = Math.sqrt(u.lengthSquared() - tm * tm); // d = sqrt(|u|^2 - t_m^2)
-        double t = (alignZero(radius - d));
-        if ((d < radius) && t != 0.0 && !((tm < 0) && (u.length() > radius))) {
-            double th = Math.sqrt(radius * radius - d * d); //// th = sqrt(r^2 - d^2)
-            double t1 = tm + th;
-            Point3D p1 = new Point3D(ray.getPoint(t1));
-            if (!p1.equals(ray.getP0())) {
-                intersectionsPoints = new ArrayList<>();
-                intersectionsPoints.add(new GeoPoint(this, p1));
-            }
-            if (!isZero(tm) && (tm >= th)) {
-                double t2 = tm - th;
-                Point3D p2 = new Point3D(ray.getPoint(t2));
-                if (!p2.equals(ray.getP0())) {
-                    if (intersectionsPoints.isEmpty()) {
-                        intersectionsPoints = new ArrayList<>();
-                    }
-                    intersectionsPoints.add(new GeoPoint(this, p2));
-                }
-            }
+        Vector u = null;
+        try {
+            u = center.subtract(ray.getP0());
+        } catch (Exception e) { // ray start in the center of the sphere
+            return List.of(new GeoPoint(this, ray.getPoint(radius))); // only 1 intersection point in this case
         }
-        return intersectionsPoints;
+        double tm = alignZero(ray.getDir().dotProduct(u)); //// t_m = v * u
+        double thSquared = (radius * radius) - (u.lengthSquared() - (tm * tm));
+
+        if (alignZero(thSquared) <= 0) // the line is out of the sphere
+            return null;
+
+        double th = Math.sqrt(thSquared);
+        double t2 = alignZero(tm + th);
+        if (t2 <= 0)
+            return null;
+
+        double t1 = alignZero(tm - th);
+        if (t1 > 0)
+            return List.of(new GeoPoint(this, ray.getPoint(t1)), new GeoPoint(this, ray.getPoint(t2)));
+        else
+            return List.of(new GeoPoint(this, ray.getPoint(t2)));
     }
 
 }
